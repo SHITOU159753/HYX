@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<body>
+
+<form  id="form1">
+
+    <input type='text' name='username' id = 'username'/>
+
+    <input type='password' name='password' id = 'password'/>
+
+    <input type='button' onclick="lala()" value='登陆'/>
+
+</form>
+
+
+
+</body>
+<script>
+    function lala(){
+        $.ajax({
+            url:"/LogController/log",
+            type:"POST",
+            data:$("#form1").serialize(),
+            success:function(result){
+                console.log(result);
+                console.log(result.code);
+                if(result.code == 500){
+                    alert("登陆失败")
+                }else{
+                    alert("登陆成功")
+
+                }
+            }
+        })
+
+    }
+
+</script>
+</html>
