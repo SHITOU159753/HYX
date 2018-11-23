@@ -4,4 +4,6 @@ import com.chen.pojo.User;
 
 public interface LogService {
     Integer examineLogService(User user);
+
+    Integer examineUsername(String userName);
 }

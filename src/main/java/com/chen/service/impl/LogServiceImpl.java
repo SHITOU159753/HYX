@@ -14,9 +14,15 @@ public class LogServiceImpl implements LogService {
 
     @Override
     public Integer examineLogService(User user) {
-        String username = user.getUsername();
-        String password = user.getPassword();
+        String userName = user.getUsername();
+        String passWord = user.getPassword();
 
-        return logDao.examineLogMapper(username,password);
+        return logDao.examineLogMapper(userName,passWord);
+    }
+
+    @Override
+    public Integer examineUsername(String userName) {
+
+        return logDao.examineUsername(userName);
     }
 }

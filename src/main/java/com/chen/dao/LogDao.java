@@ -8,9 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LogDao {
 
-    int examineLogMapper(@Param("username") String username, @Param("password") String password);
+    Integer examineLogMapper(@Param("username") String userName, @Param("password") String passWord);
 
 
-
-
+    Integer examineUsername(@Param("username") String userName);
 }

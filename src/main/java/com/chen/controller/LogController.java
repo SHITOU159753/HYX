@@ -26,4 +26,16 @@ public class LogController {
         }
         return MSG.success();
     }
+
+    @RequestMapping("/checkuser")
+    @ResponseBody
+    public MSG checkuser(String userName){
+        Integer a = logService.examineUsername(userName);
+        if(a != 0){
+            return MSG.fail();
+        }
+        return MSG.success();
+    }
+
+
 }
