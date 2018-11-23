@@ -1,7 +1,7 @@
 package com.chen.controller;
 
 import com.chen.pojo.MSG;
-import com.chen.pojo.StudentProperties;
+import com.chen.pojo.User;
 import com.chen.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +19,8 @@ public class LogController {
 
     @RequestMapping("/log")
     @ResponseBody
-    public MSG log(StudentProperties student){
-        Integer a = logService.examineLogService(student);
+    public MSG log(User user){
+        Integer a = logService.examineLogService(user);
         if(a != 1){
             return MSG.fail();
         }

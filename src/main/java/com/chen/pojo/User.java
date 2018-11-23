@@ -1,17 +1,21 @@
 package com.chen.pojo;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
+/**
+ * 用户类
+ * 可以使用lombok
+ * @Getter
+ * @Setter
+ */
 
+public class User {
 
-public class StudentProperties {
     private String username;
     private String password;
 
-    public StudentProperties() {
+    public User() {
     }
 
-    public StudentProperties(String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -40,6 +44,3 @@ public class StudentProperties {
                 '}';
     }
 }
-
-
-

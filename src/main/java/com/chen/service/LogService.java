@@ -1,7 +1,7 @@
 package com.chen.service;
 
-import com.chen.pojo.StudentProperties;
+import com.chen.pojo.User;
 
 public interface LogService {
-    Integer examineLogService(StudentProperties student);
+    Integer examineLogService(User user);
 }

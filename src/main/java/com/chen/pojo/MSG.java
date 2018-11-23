@@ -3,6 +3,9 @@ package com.chen.pojo;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *通用返回类
+ */
 public class MSG {
     //状态码 200--成功 500--失败
     private int code;
