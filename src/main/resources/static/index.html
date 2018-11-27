@@ -40,7 +40,7 @@
 
   <div class="login-box card" style="opacity: 0.85;">
     <div class="card-body">
-      <form class="form-horizontal form-material" id="loginform">
+      <form class="form-horizontal form-material" id="loginform" method="post">
         <a href="javascript:void(0)" class="text-center db"><img src="assets/images/logo-icon.png" alt="Home" /><br/><img src="assets/images/logo-text.png" alt="Home" /></a>
 
         <div class="form-group m-t-40">
@@ -123,13 +123,16 @@
 </body>
 <script>
     function log(){
+
+        var data = $("#loginform").serialize()
         $.ajax({
             url:"/LogController/log",
-            type:"POST",
-            data:$("#loginform").serialize(),
+            type:"post",
+            dataType:"json",
+            data:data,
             success:function(result){
-                console.log(result);
-                console.log(result.code);
+                // console.log(result);
+                // console.log(result.code);
                 if(result.code == 500){
                     alert("登陆失败")
                 }else{
