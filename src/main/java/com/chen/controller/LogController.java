@@ -19,12 +19,16 @@ public class LogController {
     LogService logService;
 
     /**
-     * cookie和session有问题，具体问题：第一次输入密码登陆后显示post提交错误，这个时候session应该已经存进去了，但是浏览器看不到，第二次进去的时候就好了
+     * post提交错误问题解决，使用form表单ajax提交时提交按钮应使用button，不应使用subbmit
+     *
+     * cookie和session有问题，具体问题：1.第一次输入密码登陆后显示post提交错误，2.这个时候session应该已经存进去了，但是浏览器看不到，第二次进去的时候就好了
      * 拦截器，格式还是不清楚
+     *
+     * 查阅资料session和cooke的资料
      * @param user
      * @param request
      * @param response
-     * @return
+     * @return ,method = {RequestMethod.POST}
      */
     @RequestMapping(value ="/log")
     @ResponseBody
