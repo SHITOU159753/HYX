@@ -16,4 +16,10 @@
       select count(*) from commodity;
     </select>
 
+    <select id="getAllCommodity" resultType="com.chen.pojo.Commodity">
+        select
+        <include refid="commodity"/>
+        from commodity;
+    </select>
+
 </mapper>

@@ -1,4 +1,4 @@
-package com.chen.bean;
+package com.chen.utiles;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -20,9 +20,7 @@ public class LogInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws IOException {
         System.out.println("LogInterceptor--->preHandle()执行控制器之前调用此方法....");
-
         HttpSession   session   =   request.getSession();
-
         //判断是否已有该用户登录的session
         if(!StringUtils.isEmpty(session.getAttribute("login"))){
             String a= session.getAttribute("login").toString();

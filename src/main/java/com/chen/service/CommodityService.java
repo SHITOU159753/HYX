@@ -7,5 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface CommodityService {
-    PageInfo getAllCommodity(Integer pn);
+//    Map<String,PageInfo> getAllCommodityByPage(Integer pn);
+    Map<String,PageInfo> getAllCommodity(Integer pn);
 }

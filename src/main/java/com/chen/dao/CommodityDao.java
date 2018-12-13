@@ -15,4 +15,5 @@ public interface CommodityDao {
 
     Integer getAllCommoditySize();
 
+    List<Commodity> getAllCommodity();
 }
