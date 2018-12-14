@@ -20,7 +20,6 @@ public class CommodityServiceImpl implements CommodityService {
 
     /**
      * 查询分页
-     * @param pn
      * @return
      */
  /*   @Override
@@ -47,18 +46,22 @@ public class CommodityServiceImpl implements CommodityService {
         return pageMap;
     }*/
 
+
+    /*
+        查询总数信息
+    */
     @Override
-    public Map<String, PageInfo> getAllCommodity(Integer pn) {
+    public Map<String, PageInfo> getAllCommodity() {
         List<Commodity> listCommodity = commodityDao.getAllCommodity();
         int sum = listCommodity.size();
         int pages = 0;
-        if(sum>8){
-            double pagesDouble = Math.ceil((double)sum/5);
+        if(sum>7){
+            double pagesDouble = Math.ceil((double)sum/7);
             pages = (new Double(pagesDouble)).intValue();
         }else{
             pages = 1;
         }
-        PageInfo page= new PageInfo(pn,pages,sum,listCommodity,null);
+        PageInfo page= new PageInfo(pages,sum,listCommodity,null);
         Map<String,PageInfo> pageMap = new HashMap<>();
         pageMap.put("pageInfo",page);
         return pageMap;

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -25,10 +26,21 @@ public class CommodityController {
 
     @RequestMapping("/getAllCommodity")
     @ResponseBody
-    public MSG getAllCommodity(@RequestParam(value = "pn" ,defaultValue = "1") Integer pn){
-//        Map<String,PageInfo> page  = commodityService.getAllCommodityByPage(pn);
-        Map<String,PageInfo> page  = commodityService.getAllCommodity(pn);
+    public MSG getAllCommodity(){
+        Map<String,PageInfo> page  = commodityService.getAllCommodity();
         return MSG.success(page);
     }
+
+
+    @RequestMapping("/emp/{commodity}")
+    @ResponseBody
+    public MSG addCommodity(@PathVariable("commodity") Commodity commodity){
+        System.out.println(commodity);
+
+        return  MSG.success();
+    }
+
+
+
 
 }

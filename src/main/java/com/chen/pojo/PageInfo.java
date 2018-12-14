@@ -12,7 +12,7 @@ import java.util.List;
 public class PageInfo<T> {
 
     //当前页
-    private int pageNum;
+//    private int pageNum;
     //总页数
     private int pages;
     //总记录数
@@ -29,8 +29,8 @@ public class PageInfo<T> {
     public PageInfo() {
     }
 
-    public PageInfo(int pageNum, int pages, int total, List<T> list, int[] navigatepageNums) {
-        this.pageNum = pageNum;
+    public PageInfo(int pages, int total, List<T> list, int[] navigatepageNums) {
+//        this.pageNum = pageNum;
         this.pages = pages;
         this.total = total;
         this.list = list;
@@ -39,13 +39,13 @@ public class PageInfo<T> {
         this.navigatepageNums = navigatepageNums;
     }
 
-    public int getPageNum() {
-        return pageNum;
-    }
+//    public int getPageNum() {
+//        return pageNum;
+//    }
 
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
+//    public void setPageNum(int pageNum) {
+//        this.pageNum = pageNum;
+//    }
 
     public int getPages() {
         return pages;

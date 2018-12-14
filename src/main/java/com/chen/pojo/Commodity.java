@@ -21,8 +21,8 @@ public class Commodity {
     public Commodity() {
     }
 
-    public Commodity(Integer id, String name, String type, Integer sellingPrice, Integer purchasingPrice, Integer sales) {
-        this.id = id;
+    public Commodity( String name, String type, Integer sellingPrice, Integer purchasingPrice, Integer sales) {
+//        this.id = id;
         this.name = name;
         this.type = type;
         this.sellingPrice = sellingPrice;
