@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface CommodityService {
-    //    分页查询
-    //    Map<String,PageInfo> getAllCommodityByPage(Integer pn);
-    //全部查询
-    Map<String,PageInfo> getAllCommodity();
+//        分页查询
+        Map<String,PageInfo> getAllCommodityByPage(Integer pn);
+
 }

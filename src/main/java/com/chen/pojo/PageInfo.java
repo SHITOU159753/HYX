@@ -12,7 +12,7 @@ import java.util.List;
 public class PageInfo<T> {
 
     //当前页
-//    private int pageNum;
+    private int pageNum;
     //总页数
     private int pages;
     //总记录数
@@ -20,32 +20,32 @@ public class PageInfo<T> {
     //结果集
     private List<T> list;
     //是否有前一页
-//    private boolean hasPreviousPage;
+    private boolean hasPreviousPage;
     //是否有下一页
-//    private boolean hasNextPage;
+    private boolean hasNextPage;
     //所有导航页号
     private int[] navigatepageNums;
 
     public PageInfo() {
     }
 
-    public PageInfo(int pages, int total, List<T> list, int[] navigatepageNums) {
-//        this.pageNum = pageNum;
+    public PageInfo(int pageNum, int pages, int total, List<T> list, boolean hasPreviousPage, boolean hasNextPage, int[] navigatepageNums) {
+        this.pageNum = pageNum;
         this.pages = pages;
         this.total = total;
         this.list = list;
-//        this.hasPreviousPage = hasPreviousPage;   , boolean hasPreviousPage, boolean hasNextPage
-//        this.hasNextPage = hasNextPage;
+        this.hasPreviousPage = hasPreviousPage;
+        this.hasNextPage = hasNextPage;
         this.navigatepageNums = navigatepageNums;
     }
 
-//    public int getPageNum() {
-//        return pageNum;
-//    }
+    public int getPageNum() {
+        return pageNum;
+    }
 
-//    public void setPageNum(int pageNum) {
-//        this.pageNum = pageNum;
-//    }
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
 
     public int getPages() {
         return pages;
@@ -71,21 +71,21 @@ public class PageInfo<T> {
         this.list = list;
     }
 
-//    public boolean isHasPreviousPage() {
-//        return hasPreviousPage;
-//    }
-//
-//    public void setHasPreviousPage(boolean hasPreviousPage) {
-//        this.hasPreviousPage = hasPreviousPage;
-//    }
-//
-//    public boolean isHasNextPage() {
-//        return hasNextPage;
-//    }
-//
-//    public void setHasNextPage(boolean hasNextPage) {
-//        this.hasNextPage = hasNextPage;
-//    }
+    public boolean isHasPreviousPage() {
+        return hasPreviousPage;
+    }
+
+    public void setHasPreviousPage(boolean hasPreviousPage) {
+        this.hasPreviousPage = hasPreviousPage;
+    }
+
+    public boolean isHasNextPage() {
+        return hasNextPage;
+    }
+
+    public void setHasNextPage(boolean hasNextPage) {
+        this.hasNextPage = hasNextPage;
+    }
 
     public int[] getNavigatepageNums() {
         return navigatepageNums;
@@ -101,8 +101,8 @@ public class PageInfo<T> {
                 "pages=" + pages +
                 ", total=" + total +
                 ", list=" + list +
-//                ", hasPreviousPage=" + hasPreviousPage +
-//                ", hasNextPage=" + hasNextPage +
+                ", hasPreviousPage=" + hasPreviousPage +
+                ", hasNextPage=" + hasNextPage +
                 ", navigatepageNums=" + Arrays.toString(navigatepageNums) +
                 '}';
     }

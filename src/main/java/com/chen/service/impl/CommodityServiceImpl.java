@@ -22,7 +22,7 @@ public class CommodityServiceImpl implements CommodityService {
      * 查询分页
      * @return
      */
- /*   @Override
+    @Override
     public  Map<String,PageInfo> getAllCommodityByPage(Integer pn) {
 
         //查询总数
@@ -31,7 +31,9 @@ public class CommodityServiceImpl implements CommodityService {
         List<Commodity> listCommodity = commodityDao.getLimitCommodity((pn-1)*8,8);
         int pages = 0;
         if(sum>8){
-            double pagesDouble = Math.ceil((double)sum/5);
+            double pagesDouble = Math.ceil((double)sum/8);
+
+
             pages = (new Double(pagesDouble)).intValue();
         }else{
             pages = 1;
@@ -40,31 +42,15 @@ public class CommodityServiceImpl implements CommodityService {
         for (int i = 0;i<pages;i++){
             navigatepageNums[i] = i + 1;
         }
-        PageInfo page= new PageInfo(0,pages,sum,listCommodity,pn == 1?false:true,pn == pages?false:true,navigatepageNums);
-        Map<String,PageInfo> pageMap = new HashMap<>();
-        pageMap.put("pageInfo",page);
-        return pageMap;
-    }*/
-
-
-    /*
-        查询总数信息
-    */
-    @Override
-    public Map<String, PageInfo> getAllCommodity() {
-        List<Commodity> listCommodity = commodityDao.getAllCommodity();
-        int sum = listCommodity.size();
-        int pages = 0;
-        if(sum>7){
-            double pagesDouble = Math.ceil((double)sum/7);
-            pages = (new Double(pagesDouble)).intValue();
-        }else{
-            pages = 1;
-        }
-        PageInfo page= new PageInfo(pages,sum,listCommodity,null);
+        PageInfo page= new PageInfo(pn,pages,sum,listCommodity,pn == 1?false:true,pn == pages?false:true,navigatepageNums);
         Map<String,PageInfo> pageMap = new HashMap<>();
         pageMap.put("pageInfo",page);
         return pageMap;
     }
+
+
+
+
+
 
 }
