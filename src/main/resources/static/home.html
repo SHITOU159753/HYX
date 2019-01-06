@@ -20,6 +20,53 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <style>
+        a{
+            color: white;
+        }
+        .limit{
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #337ab7;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            cursor: default;
+        }
+        .limit:hover{
+            background-color: #e8e8e8;
+            text-decoration : none
+        }
+        .forbidden{
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            color: #777;
+            cursor: default;
+            /*cursor: not-allowed;*/
+        }
+        .forbiddenPage{
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            text-decoration: none;
+            cursor: default;
+            background-color: #337ab7;
+            border-color: #337ab7;
+            /*cursor:not-allowed;*/
+            border: 1px solid #337ab7;
+        }
+    </style>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -639,6 +686,10 @@
                                     <div class="col-md-6" id="page_nav_area">
 
                                     </div>
+
+
+
+
                                 </div>
 
                             </div>
@@ -717,7 +768,7 @@
     //1、解析并显示商品数量数据
     function build_emps_table(result) {
         //清空table表格 emps
-        // $("#emps_table tbody").empty();
+        $("#emps_table tbody").empty();
         var com = result.data.pageInfo.list;
         $.each(com, function (index, item) {
             var idTd = $("<td></td>").append(item.id).attr("style", "text-align: center");
@@ -776,35 +827,35 @@
     function build_page_nav(result) {
         //page_nav_area
         $("#page_nav_area").empty();
-        var ul = $("<ul></ul>").addClass("pagination");
-
+        var ul = $("<ul></ul>");
+//.addClass("pagination")
         //构建元素
-        var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href", "#"));
-        var prePageLi = $("<li></li>").append($("<a></a>").append("&laquo;"));
+        var firstPageLi = $("<a></a>").append("首页");
+        var prePageLi = $("<a></a>").append("&laquo;");
         if (result.data.pageInfo.hasPreviousPage == false) {
-            firstPageLi.addClass("disabled");
-            prePageLi.addClass("disabled");
+            firstPageLi.addClass("forbidden");
+            prePageLi.addClass("forbidden");
         } else {
             //为元素添加点击翻页的事件
-            firstPageLi.click(function () {
+            firstPageLi.attr("href", "#").addClass("limit").click(function () {
                 to_page(1);
             });
-            prePageLi.click(function () {
+            prePageLi.addClass("limit").click(function () {
                 to_page(result.data.pageNum - 1);
             });
         }
 
 
-        var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;"));
-        var lastPageLi = $("<li></li>").append($("<a></a>").append("末页").attr("href","#"));
+        var nextPageLi = $("<a></a>").append("&raquo;");
+        var lastPageLi = $("<a></a>").append("末页");
         if(result.data.pageInfo.hasNextPage == false){
-            nextPageLi.addClass("disabled");
-            lastPageLi.addClass("disabled");
+            nextPageLi.addClass("forbidden");
+            lastPageLi.addClass("forbidden");
         }else{
-            nextPageLi.click(function(){
+            nextPageLi.addClass("limit").click(function(){
                 to_page(result.data.pageInfo.pageNum +1);
             });
-            lastPageLi.click(function(){
+            lastPageLi.attr("href","#").addClass("limit").click(function(){
                 to_page(result.data.pageInfo.pages);
             });
         }
@@ -816,9 +867,11 @@
         //1,2，3遍历给ul中添加页码提示
         $.each(result.data.pageInfo.navigatepageNums,function(index,item){
 
-            var numLi = $("<li></li>").append($("<a></a>").append(item));
+            var numLi = $("<a></a>").append(item);
             if(result.data.pageInfo.pageNum == item){
-                numLi.addClass("active");
+                numLi.addClass("forbiddenPage").attr("style","color: white");
+            }else{
+                numLi.addClass("limit");
             }
             numLi.click(function(){
                 to_page(item);
@@ -829,7 +882,7 @@
         ul.append(nextPageLi).append(lastPageLi);
 
         //把ul加入到nav
-        var navEle = $("<nav></nav>").append(ul);
+        var navEle = $("<div></div>").append(ul);
         navEle.appendTo("#page_nav_area");
     }
 
