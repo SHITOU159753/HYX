@@ -7,10 +7,7 @@ import com.chen.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -32,9 +29,9 @@ public class CommodityController {
     }
 
 
-    @RequestMapping("/emp/{commodity}")
+    @RequestMapping(value = "/emp",method = RequestMethod.POST)
     @ResponseBody
-    public MSG addCommodity(@PathVariable("commodity") Commodity commodity){
+    public MSG addCommodity( Commodity commodity){
         System.out.println(commodity);
 
         return  MSG.success();

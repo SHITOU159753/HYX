@@ -639,11 +639,14 @@
                                             <tfoot>
                                             <tr>
                                                 <td colspan="3">
+                                                    <div id="aaa">
 
+                                                    </div>
                                                 </td>
                                                 <td colspan="7">
                                                     <div class="text-right">
                                                         <ul class="pagination">
+
                                                         </ul>
                                                     </div>
                                                 </td>
@@ -719,7 +722,7 @@
                 build_emps_table(result);
                 //2、解析并显示分页信息
                 build_page_info(result);
-                //3、解析显示分页条数据
+                //3、解析显示分页条数据s
                 // build_page_nav(result);
             }
         });
@@ -763,13 +766,17 @@
                 .append(salesTd)
                 .append(btnTd)
                 .appendTo("#demo-foo-addrow tbody");
+
+
+
         });
+
     }
 
     //解析显示分页信息
     function build_page_info(result) {
-        $("#page_info_area").empty();
-        $("#page_info_area").append("总" +
+        $("#aaa").empty();
+        $("#aaa").append("总" +
             result.data.pageInfo.pages + "页,总" +
             result.data.pageInfo.total + "条记录");
     }
@@ -811,10 +818,11 @@
         }
 
         //2、发送ajax请求保存商品信息
-        var commodity = $("#empAddModal form").serialize();
+
         $.ajax({
-            url:"/Commodity/emp/"+commodity,
-            // type:"POST",
+            url:"/Commodity/emp",
+            type:"POST",
+            data:$("#empAddModal form").serialize(),
             success:function(result){
                 //alert(result.msg);
                 if(result.code == 100){
