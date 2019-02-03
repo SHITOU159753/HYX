@@ -43,7 +43,7 @@
         }),
         function() {
             $("#basicgrid").jsGrid({
-                height: "580px",
+                height: "600px",
                 width: "100%",
                 filtering: !0,
                 editing: !0,

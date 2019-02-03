@@ -14,5 +14,4 @@ public interface CommodityDao {
     List<Commodity> getLimitCommodity(@Param("start") Integer start,@Param("size") Integer size );
 
     Integer getAllCommoditySize();
-
 }
