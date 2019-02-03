@@ -6,14 +6,10 @@ import com.chen.pojo.PageInfo;
 import com.chen.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
+
 
 @Controller
 @RequestMapping("/Commodity")
@@ -23,11 +19,12 @@ public class CommodityController {
     CommodityService commodityService;
 
 
-    @RequestMapping("/getAllCommodity")
+    @RequestMapping("/getCommodityByPage")
     @ResponseBody
-    public MSG getAllCommodity(@RequestParam(value = "pn" ,defaultValue = "1") Integer pn){
-        PageInfo page  = commodityService.getAllCommodity(pn);
-        return MSG.success().add("pageInfo",page);
+    public MSG getAllCommodity(@RequestParam(value = "pn", defaultValue = "1")Integer pn){
+        Map<String, PageInfo> page  = commodityService.getAllCommodityByPage(pn);
+        return MSG.success(page);
     }
+
 
 }

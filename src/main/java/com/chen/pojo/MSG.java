@@ -8,33 +8,50 @@ import java.util.Map;
  */
 public class MSG {
     //状态码 200--成功 500--失败
-    private int code;
+    private Integer code;
     //提示信息
     private String msg;
     //用户需要的返回值
-    private Map<String,Object> extend = new HashMap<>();
+    private Object data;
+
+    public MSG(Integer code, String msg, Object data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+    public MSG( Object data) {
+        this.code = 200;
+        this.msg = "OK";
+        this.data = data;
+    }
+    public MSG(Throwable e){
+        this.setCode(500);
+        this.msg = "OK";
+        this.data = e.getMessage();
+    }
+    public MSG() {
+    }
 
     public static MSG success(){
-        MSG msg = new MSG();
-        msg.setCode(200);
-        msg.setMsg("处理成功！");
-        return msg;
+        return new MSG();
     }
-
-    public static MSG fail(){
-        MSG msg = new MSG();
-        msg.setCode(500);
-        msg.setMsg("处理失败");
-        return msg;
+    public static MSG success(Object data){
+        return new MSG(data);
+    }
+    public static MSG success(Integer code, String msg, Object data ){
+        return new MSG();
     }
 
 
-    public MSG add(String key,Object value){
-        this.getExtend().put(key,value);
-        return this;
+    public static MSG fail(String msg){
+        MSG mSG = new MSG();
+        mSG.setCode(500);
+        mSG.setMsg(msg);
+        return mSG;
     }
 
-    public int getCode() {
+
+    public Integer getCode() {
         return code;
     }
 
@@ -50,11 +67,11 @@ public class MSG {
         this.msg = msg;
     }
 
-    public Map<String, Object> getExtend() {
-        return extend;
+    public Object getData() {
+        return data;
     }
 
-    public void setExtend(Map<String, Object> extend) {
-        this.extend = extend;
+    public void setData(Object data) {
+        this.data = data;
     }
 }

@@ -16,4 +16,5 @@
       select count(*) from commodity;
     </select>
 
+
 </mapper>
