@@ -36,4 +36,9 @@
         , sales = #{sales}
         where id = #{id}
     </update>
+
+    <delete id="deleteCommodity">
+        delete from commodity where id=#{id}
+    </delete>
+
 </mapper>

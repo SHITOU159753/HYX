@@ -65,5 +65,11 @@ public class CommodityServiceImpl implements CommodityService {
         return commodityDao.updateCommodity(commodity);
     }
 
+    @Override
+    public Integer deleteCommodity(String id) {
+
+        return commodityDao.deleteCommodity(id);
+    }
+
 
 }

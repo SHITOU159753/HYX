@@ -15,4 +15,6 @@ public interface CommodityService {
     Commodity getMessageBuId(String id);
 
     Integer updateCommodity(Commodity commodity);
+
+    Integer deleteCommodity(String id);
 }

@@ -1037,7 +1037,7 @@
     });
     function getEmp(id){
         $.ajax({
-            url:"Commodity/emp/"+id,
+            url:"Commodity/getMessageById/"+id,
             type:"GET",
             success:function(result){
                 console.log(result);
@@ -1073,7 +1073,27 @@
         });
     });
 
-
+    //单个删除
+    $(document).on("click",".delete_btn",function(){
+        //1、弹出是否确认删除对话框
+        var empName = $(this).parents("tr").find("td:eq(2)").text();
+        var id = $(this).attr("del-id");
+        //alert($(this).parents("tr").find("td:eq(1)").text());
+        if(confirm("确认删除【"+empName+"】吗？")){
+            //确认，发送ajax请求删除即可
+            $.ajax({
+                url:"Commodity/deleteCommodity/"+id,
+                type:"DELETE",
+                success:function(result){
+                    if(result.data != 0){
+                        alert("删除成功,影响行数为:"+result.data+"行");
+                    }
+                    //回到本页
+                    to_page(pageNow);
+                }
+            });
+        }
+    });
 
 
 

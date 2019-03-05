@@ -24,4 +24,6 @@ public interface CommodityDao {
     Commodity getMessageBuId(@Param("id") String id);
 
     Integer updateCommodity(Commodity commodity);
+
+    Integer deleteCommodity(@Param("id") String id);
 }

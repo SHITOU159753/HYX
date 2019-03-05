@@ -31,13 +31,24 @@ public class CommodityController {
         return MSG.success(page);
     }
 
-    @GetMapping("/emp/{id}")
+    /**
+     * 通过id获取商品信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/getMessageById/{id}")
     @ResponseBody
-    public MSG getMessageBuId(@PathVariable("id")  String id){
+    public MSG getMessageById(@PathVariable("id")  String id){
         Commodity commodity = commodityService.getMessageBuId(id);
         return  MSG.success(commodity);
     }
 
+    /**
+     * 修改商品信息
+     * @param id
+     * @param commodity
+     * @return
+     */
     @PutMapping("/updateCommodity/{id}")
     @ResponseBody
     public MSG updateCommodity(@PathVariable("id")  String id,Commodity commodity){
@@ -45,6 +56,17 @@ public class CommodityController {
         return  MSG.success(affectNumber);
     }
 
+    /**
+     * 删除商品信息
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/deleteCommodity/{id}")
+    @ResponseBody
+    public MSG deleteCommodity(@PathVariable("id")  String id){
+        Integer affectNumber = commodityService.deleteCommodity(id);
+        return  MSG.success(affectNumber);
+    }
 
     /**
      * 添加商品信息
