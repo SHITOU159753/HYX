@@ -1,0 +1,6 @@
+com\chen\pojo\User.class
+com\chen\pojo\MSG.class
+com\chen\dao\CommodityDao.class
+com\chen\dao\LogDao.class
+com\chen\pojo\Commodity.class
+com\chen\pojo\PageInfo.class

@@ -1,0 +1,7 @@
+com\chen\bean\WebMvcConfig.class
+com\DemoApplication.class
+com\chen\common\AppServletConfig.class
+com\chen\common\AppRootConfig.class
+com\chen\controller\LogController.class
+com\chen\controller\CommodityController.class
+com\chen\common\WebAppInitializer.class

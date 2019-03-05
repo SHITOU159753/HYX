@@ -1,0 +1,6 @@
+com\chen\utiles\GlobalDefultExceptionHandler.class
+com\chen\utiles\pojo\ServiceException.class
+com\chen\service\impl\LogServiceImpl.class
+com\chen\utiles\BaseService.class
+com\chen\service\impl\CommodityServiceImpl.class
+com\chen\utiles\LogInterceptor.class
