@@ -14,7 +14,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         //registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**").excludePathPatterns("xxx");
         //addPathPatterns("/**")代表指定拦截所有路径的资源
 
-        registry.addInterceptor(new LogInterceptor()).addPathPatterns("/*.html").excludePathPatterns("/index.html", "/register.html", "/com/chen/controller/LogController");
+        registry.addInterceptor(new LogInterceptor()).addPathPatterns("/*.html").excludePathPatterns("/login.html", "/register.html", "/com/chen/controller/LogController");
 
     }
 }

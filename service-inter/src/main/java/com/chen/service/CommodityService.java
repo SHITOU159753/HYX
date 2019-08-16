@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface CommodityService {
 //        分页查询
-    Map<String, PageInfo> getAllCommodityByPage(Integer pn);
+    Map<String, PageInfo> getAllCommodityByPage(Integer pn,Integer singlePageDisplay);
 //
     Integer addEmpmerchandiseMessage(Commodity commodity);
 

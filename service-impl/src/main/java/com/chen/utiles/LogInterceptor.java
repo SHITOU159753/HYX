@@ -28,7 +28,7 @@ public class LogInterceptor implements HandlerInterceptor {
                 return  true;
             }
         }
-        response.sendRedirect("index.html") ;
+        response.sendRedirect("login.html") ;
         //跳转到登录页
         return false;
     }

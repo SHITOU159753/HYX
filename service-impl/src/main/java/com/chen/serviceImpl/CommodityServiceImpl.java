@@ -23,15 +23,15 @@ public class CommodityServiceImpl implements CommodityService {
      * @return
      */
     @Override
-    public  Map<String,PageInfo> getAllCommodityByPage(Integer pn) {
+    public  Map<String,PageInfo> getAllCommodityByPage(Integer pn,Integer singlePageDisplay) {
 
         //查询总数
         Integer sum = commodityDao.getAllCommoditySize();
         //查询分页信息
-        List<Commodity> listCommodity = commodityDao.getLimitCommodity((pn-1)*8,8);
+        List<Commodity> listCommodity = commodityDao.getLimitCommodity((pn-1)*singlePageDisplay,singlePageDisplay);
         int pages = 0;
-        if(sum>8){
-            double pagesDouble = Math.ceil((double)sum/8);
+        if(sum>singlePageDisplay){
+            double pagesDouble = Math.ceil((double)sum/singlePageDisplay);
             pages = (new Double(pagesDouble)).intValue();
         }else{
             pages = 1;

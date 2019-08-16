@@ -26,8 +26,8 @@ public class CommodityController {
      */
     @GetMapping("/getCommodityByPage")
     @ResponseBody
-    public MSG getAllCommodity(@RequestParam(value = "pn", defaultValue = "1")Integer pn){
-        Map<String, PageInfo> page  = commodityService.getAllCommodityByPage(pn);
+    public MSG getAllCommodity(@RequestParam(value = "pn", defaultValue = "1")Integer pn,@RequestParam Integer singlePageDisplay){
+        Map<String, PageInfo> page  = commodityService.getAllCommodityByPage(pn,singlePageDisplay);
         return MSG.success(page);
     }
 

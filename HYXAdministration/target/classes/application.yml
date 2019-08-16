@@ -38,7 +38,7 @@ server:
 #  mapper-locations: classpath:mappers/*.xml
 #  type-aliases-package: com.chen.dao
 jdbcDriver: com.mysql.cj.jdbc.Driver
-#基本属性jdbc:mysql://127.0.0.1:3306/testlog?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    #基本属性jdbc:mysql://127.0.0.1:3306/testlog?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
 jdbcUrl: jdbc:mysql://localhost:3306/HYX?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
 jdbcUser: root
 jdbcPassword: 434835
