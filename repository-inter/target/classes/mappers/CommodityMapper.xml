@@ -5,7 +5,7 @@
 
 
     <sql id="commodity">
-         id, name, type, sellingPrice, purchasingPrice, sales
+         id, name, type, sellingPrice, purchasingPrice, sales,grossProfit,IndividualProfit,firstClassification,secondClassification,thirdClassification
     </sql>
 
     <select id="getLimitCommodity" resultType="com.chen.pojo.Commodity">

@@ -21,10 +21,11 @@
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
     <style>
-        a{
+        a {
             color: white;
         }
-        .limit{
+
+        .limit {
             position: relative;
             float: left;
             padding: 6px 12px;
@@ -36,11 +37,13 @@
             border: 1px solid #ddd;
             cursor: default;
         }
-        .limit:hover{
+
+        .limit:hover {
             background-color: #e8e8e8;
-            text-decoration : none
+            text-decoration: none
         }
-        .forbidden{
+
+        .forbidden {
             position: relative;
             float: left;
             padding: 6px 12px;
@@ -53,7 +56,8 @@
             cursor: default;
             /*cursor: not-allowed;*/
         }
-        .forbiddenPage{
+
+        .forbiddenPage {
             position: relative;
             float: left;
             padding: 6px 12px;
@@ -77,7 +81,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" >商品修改</h4>
+                <h4 class="modal-title">商品修改</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
@@ -100,7 +104,8 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">进价</label>
                         <div class="col-sm-10">
-                            <input type="text" name="purchasingPrice" class="form-control" id="cmdPurchasingPrice_update_input"
+                            <input type="text" name="purchasingPrice" class="form-control"
+                                   id="cmdPurchasingPrice_update_input"
                                    placeholder="进价">
                             <span class="help-block"></span>
                         </div>
@@ -108,7 +113,8 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">售价</label>
                         <div class="col-sm-10">
-                            <input type="text" name="sellingPrice" class="form-control" id="cmdSellingPrice_update_input"
+                            <input type="text" name="sellingPrice" class="form-control"
+                                   id="cmdSellingPrice_update_input"
                                    placeholder="售价">
                             <span class="help-block"></span>
                         </div>
@@ -131,7 +137,6 @@
         </div>
     </div>
 </div>
-
 
 
 <!-- 商品添加的模态框 -->
@@ -164,7 +169,8 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">进价</label>
                         <div class="col-sm-10">
-                            <input type="text" name="purchasingPrice" class="form-control" id="cmdPurchasingPrice_add_input"
+                            <input type="text" name="purchasingPrice" class="form-control"
+                                   id="cmdPurchasingPrice_add_input"
                                    placeholder="进价">
                             <span class="help-block"></span>
                         </div>
@@ -727,29 +733,27 @@
                                 <div class="col-md-12">
                                     <table class="table table-hover" id="emps_table">
                                         <thead>
-                                            <tr>
-                                                <th style="width: 10%;text-align: center">id</th>
-                                                <th style="width: 20%;text-align: center">商品名称</th>
-                                                <th style="width: 20%;text-align: center">商品型号</th>
-                                                <th style="width: 10%;text-align: center">进价</th>
-                                                <th style="width: 10%;text-align: center">售价</th>
-                                                <th style="width: 15%;text-align: center">销量</th>
-                                                <th style="width: 15%;text-align: center">操作</th>
-                                            </tr>
+                                        <tr>
+                                            <th style="width: 10%;text-align: center">id</th>
+                                            <th style="width: 20%;text-align: center">商品名称</th>
+                                            <th style="width: 20%;text-align: center">商品型号</th>
+                                            <th style="width: 10%;text-align: center">进价</th>
+                                            <th style="width: 10%;text-align: center">售价</th>
+                                            <th style="width: 15%;text-align: center">销量</th>
+                                            <th style="width: 15%;text-align: center">操作</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
 
                                         </tbody>
 
                                     </table>
-                                        <!--分页文字信息  -->
+                                    <!--分页文字信息  -->
                                     <div class="col-md-6" id="page_info_area"></div>
                                     <!-- 分页条信息 -->
                                     <div class="col-md-6" id="page_nav_area">
 
                                     </div>
-
-
 
 
                                 </div>
@@ -813,7 +817,7 @@
         $.ajax({
             // url: "/Commodity/getAllCommodity",
             url: "/Commodity/getCommodityByPage",
-            data:"pn="+pn,
+            data: "pn=" + pn,
             type: "GET",
             success: function (result) {
                 console.log(result);
@@ -871,19 +875,15 @@
 
 
     //解析显示分页信息
-    function build_page_info(result){
+    function build_page_info(result) {
         $("#page_info_area").empty();
-        $("#page_info_area").append("当前"+result.data.pageInfo.pageNum+"页,总"+
-            result.data.pageInfo.pages+"页,总"+
-            result.data.pageInfo.total+"条记录");
+        $("#page_info_area").append("当前" + result.data.pageInfo.pageNum + "页,总" +
+            result.data.pageInfo.pages + "页,总" +
+            result.data.pageInfo.total + "条记录");
         totalRecord = result.data.pageInfo.total;
         currentPage = result.data.pageInfo.pages;
         pageNow = result.data.pageInfo.pageNum;
     }
-
-
-
-
 
 
     //解析显示分页条，点击分页要能去下一页....
@@ -911,32 +911,31 @@
 
         var nextPageLi = $("<a></a>").append("&raquo;");
         var lastPageLi = $("<a></a>").append("末页");
-        if(result.data.pageInfo.hasNextPage == false){
+        if (result.data.pageInfo.hasNextPage == false) {
             nextPageLi.addClass("forbidden");
             lastPageLi.addClass("forbidden");
-        }else{
-            nextPageLi.addClass("limit").click(function(){
-                to_page(result.data.pageInfo.pageNum +1);
+        } else {
+            nextPageLi.addClass("limit").click(function () {
+                to_page(result.data.pageInfo.pageNum + 1);
             });
-            lastPageLi.attr("href","#").addClass("limit").click(function(){
+            lastPageLi.attr("href", "#").addClass("limit").click(function () {
                 to_page(result.data.pageInfo.pages);
             });
         }
 
 
-
         //添加首页和前一页 的提示
         ul.append(firstPageLi).append(prePageLi);
         //1,2，3遍历给ul中添加页码提示
-        $.each(result.data.pageInfo.navigatepageNums,function(index,item){
+        $.each(result.data.pageInfo.navigatepageNums, function (index, item) {
 
             var numLi = $("<a></a>").append(item);
-            if(result.data.pageInfo.pageNum == item){
-                numLi.addClass("forbiddenPage").attr("style","color: white");
-            }else{
+            if (result.data.pageInfo.pageNum == item) {
+                numLi.addClass("forbiddenPage").attr("style", "color: white");
+            } else {
                 numLi.addClass("limit");
             }
-            numLi.click(function(){
+            numLi.click(function () {
                 to_page(item);
             });
             ul.append(numLi);
@@ -948,8 +947,6 @@
         var navEle = $("<div></div>").append(ul);
         navEle.appendTo("#page_nav_area");
     }
-
-
 
 
     //点击新增按钮弹出模态框。
@@ -1000,8 +997,8 @@
                     //信息保存成功；
                     //2、来到最后一页，显示刚才保存的数据
                     //发送ajax请求显示最后一页数据即可
-                    if(totalRecord % 8 == 0){
-                        currentPage = currentPage+1
+                    if (totalRecord % 8 == 0) {
+                        currentPage = currentPage + 1
                         to_page(currentPage);
                     }
                     to_page(currentPage);
@@ -1023,23 +1020,24 @@
     });
 
 
-    $(document).on("click",".edit_btn",function(){
+    $(document).on("click", ".edit_btn", function () {
 
 
         //2、查出员工信息，显示员工信息
         getEmp($(this).attr("edit-id"));
 
         //3、把员工的id传递给模态框的更新按钮
-        $("#emp_update_btn").attr("edit-id",$(this).attr("edit-id"));
+        $("#emp_update_btn").attr("edit-id", $(this).attr("edit-id"));
         $("#empUpdateModal").modal({
-            backdrop:"static"
+            backdrop: "static"
         });
     });
-    function getEmp(id){
+
+    function getEmp(id) {
         $.ajax({
-            url:"Commodity/getMessageById/"+id,
-            type:"GET",
-            success:function(result){
+            url: "Commodity/getMessageById/" + id,
+            type: "GET",
+            success: function (result) {
                 console.log(result);
                 console.log(id);
                 //,,,，
@@ -1054,14 +1052,14 @@
     }
 
     //点击更新，更新员工信息
-    $("#emp_update_btn").click(function(){
+    $("#emp_update_btn").click(function () {
         $.ajax({
-            url:"Commodity/updateCommodity/"+$(this).attr("edit-id"),
-            type:"PUT",
-            data:$("#empUpdateModal form").serialize(),
-            success:function(result){
-                if(result.data != 0){
-                    alert("修改成功,影响行数为:"+result.data+"行");
+            url: "Commodity/updateCommodity/" + $(this).attr("edit-id"),
+            type: "PUT",
+            data: $("#empUpdateModal form").serialize(),
+            success: function (result) {
+                if (result.data != 0) {
+                    alert("修改成功,影响行数为:" + result.data + "行");
                 }
 
                 //1、关闭对话框
@@ -1074,19 +1072,19 @@
     });
 
     //单个删除
-    $(document).on("click",".delete_btn",function(){
+    $(document).on("click", ".delete_btn", function () {
         //1、弹出是否确认删除对话框
         var empName = $(this).parents("tr").find("td:eq(2)").text();
         var id = $(this).attr("del-id");
         //alert($(this).parents("tr").find("td:eq(1)").text());
-        if(confirm("确认删除【"+empName+"】吗？")){
+        if (confirm("确认删除【" + empName + "】吗？")) {
             //确认，发送ajax请求删除即可
             $.ajax({
-                url:"Commodity/deleteCommodity/"+id,
-                type:"DELETE",
-                success:function(result){
-                    if(result.data != 0){
-                        alert("删除成功,影响行数为:"+result.data+"行");
+                url: "Commodity/deleteCommodity/" + id,
+                type: "DELETE",
+                success: function (result) {
+                    if (result.data != 0) {
+                        alert("删除成功,影响行数为:" + result.data + "行");
                     }
                     //回到本页
                     to_page(pageNow);
@@ -1094,9 +1092,6 @@
             });
         }
     });
-
-
-
 
 
 </script>

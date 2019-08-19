@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<body>
+
+<div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品名称</label>
+            <div class="col-sm-10">
+                <input type="text" name="name" class="form-control" id="cmdName_add_input"
+                       placeholder="商品名称">
+                <span class="help-block"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">商品型号</label>
+            <div class="col-sm-10">
+                <input type="text" name="type" class="form-control" id="cmdNum_add_input"
+                       placeholder="商品型号">
+                <span class="help-block"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">进价</label>
+            <div class="col-sm-10">
+                <input type="text" name="purchasingPrice" class="form-control" id="cmdPurchasingPrice_add_input"
+                       placeholder="进价">
+                <span class="help-block"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">售价</label>
+            <div class="col-sm-10">
+                <input type="text" name="sellingPrice" class="form-control" id="cmdSellingPrice_add_input"
+                       placeholder="售价">
+                <span class="help-block"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">销量</label>
+            <div class="col-sm-10">
+                <input type="text" name="sales" class="form-control" id="cmdSales_add_input"
+                       placeholder="销量">
+                <span class="help-block"></span>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+</body>
+
+
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    $("#emp_save_btn").click(function () {
+        //1、模态框中填写的表单数据提交给服务器进行保存
+        //1、先对要提交给服务器的数据进行校验
+
+        //1、判断之前的ajax用户名校验是否成功。如果成功。
+        if ($(this).attr("ajax-va") == "error") {
+            return false;
+        }
+
+        //2、发送ajax请求保存商品信息
+
+        $.ajax({
+            url: "/Commodity/addEmpmerchandiseMessage",
+            type: "POST",
+            data: $("#empAddModal form").serialize(),
+            success: function (result) {
+
+                console.log(result);
+                //1、关闭模态框
+                $("#empAddModal").modal('hide');
+                //alert(result.msg);
+                if (result.code == 200) {
+                    //信息保存成功；
+                    //2、来到最后一页，显示刚才保存的数据
+                    //发送ajax请求显示最后一页数据即可
+                    if (totalRecord % 8 == 0) {
+                        currentPage = currentPage + 1
+                        to_page(currentPage);
+                    }
+                    to_page(currentPage);
+                } else {
+                    //显示失败信息
+                    //console.log(result);
+                    //有哪个字段的错误信息就显示哪个字段的；
+                    // if (undefined != result.data.errorFields.email) {
+                    //     //显示邮箱错误信息
+                    //     show_validate_msg("#email_add_input", "error", result.data.errorFields.email);
+                    // }
+                    // if (undefined != result.data.errorFields.empName) {
+                    //     //显示员工名字的错误信息
+                    //     show_validate_msg("#empName_add_input", "error", result.extend.errorFields.empName);
+                    // }
+                }
+            }
+        });
+    });
+
+</script>
+</html>

@@ -1,9 +1,16 @@
 package com.chen.pojo;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 产品类
  */
+@Getter
+@Setter
+
 public class Commodity {
+
 
     private Integer id;
     //产品名称
@@ -16,65 +23,31 @@ public class Commodity {
     private Integer purchasingPrice;
     //销量
     private Integer sales;
-
+    //商品总利润
+    private Integer grossProfit;
+    //商品单件利润
+    private Integer IndividualProfit;
+    //一级分类
+    private Integer firstClassification;
+    //二级分类
+    private Integer secondClassification;
+    //三级分类
+    private Integer thirdClassification;
 
     public Commodity() {
     }
 
-    public Commodity( Integer id,String name, String type, Integer sellingPrice, Integer purchasingPrice, Integer sales) {
+    public Commodity(Integer id, String name, String type, Integer sellingPrice, Integer purchasingPrice, Integer sales, Integer grossProfit, Integer individualProfit, Integer firstClassification, Integer secondClassification, Integer thirdClassification) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.sellingPrice = sellingPrice;
         this.purchasingPrice = purchasingPrice;
         this.sales = sales;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Integer getSellingPrice() {
-        return sellingPrice;
-    }
-
-    public void setSellingPrice(Integer sellingPrice) {
-        this.sellingPrice = sellingPrice;
-    }
-
-    public Integer getPurchasingPrice() {
-        return purchasingPrice;
-    }
-
-    public void setPurchasingPrice(Integer purchasingPrice) {
-        this.purchasingPrice = purchasingPrice;
-    }
-
-    public Integer getSales() {
-        return sales;
-    }
-
-    public void setSales(Integer sales) {
-        this.sales = sales;
+        this.grossProfit = grossProfit;
+        IndividualProfit = individualProfit;
+        this.firstClassification = firstClassification;
+        this.secondClassification = secondClassification;
+        this.thirdClassification = thirdClassification;
     }
 }

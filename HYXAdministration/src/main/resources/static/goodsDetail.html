@@ -1,0 +1,521 @@
+<html>
+<head>
+</head>
+
+<link href="img/favicon.png" rel="icon">
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Bootstrap core CSS -->
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--external css-->
+<link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+<!-- Custom styles for this template -->
+<link href="css/style.css" rel="stylesheet">
+<link href="css/style-responsive.css" rel="stylesheet">
+<style>
+    .limit {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        line-height: 1.42857143;
+        color: #337ab7;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        cursor: default;
+    }
+
+    .limit:hover {
+        background-color: #e8e8e8;
+        text-decoration: none
+    }
+
+    .forbidden {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        line-height: 1.42857143;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        color: #777;
+        cursor: default;
+        /*cursor: not-allowed;*/
+    }
+
+    .forbiddenPage {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        line-height: 1.42857143;
+        text-decoration: none;
+        cursor: default;
+        background-color: #337ab7;
+        border-color: #337ab7;
+        /*cursor:not-allowed;*/
+        border: 1px solid #337ab7;
+    }
+</style>
+<body>
+
+<div class="page-wrapper" style="background: white;padding-bottom: 0px;">
+
+    <div class="container-fluid">
+        <div class="row" style="margin: 0; padding: 0;">
+            <div class="col-12">
+
+                <div class="card-body">
+                    <h1>商品详情展示</h1>
+
+                    <div class="row">
+                        <div class="col-md-1 ">
+                            <button class="btn btn-primary" id="emp_add_modal_btn">新增</button>
+                            <button class="btn btn-danger" id="emp_delete_all_btn">删除</button>
+
+
+                        </div>
+                        <div>
+                            <ul class="nav navbar-nav" style="display: inline">
+                                <li>
+                                    <h4>页面显示</h4>
+                                </li>
+                                <li class="dropdown" style="margin-left: 10px">
+                                    <div class="dropdown-toggle btn btn-default" data-toggle="dropdown">
+                                        <text id="singlePageDisplay">8</text>
+                                        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                                    </div>
+                                    <ul class="dropdown-menu" id="action">
+                                        <li><a href="#">8</a></li>
+                                        <li><a href="#">12</a></li>
+                                        <li><a href="#">16</a></li>
+                                        <li><a href="#">20</a></li>
+                                        <li><a href="#">24</a></li>
+                                    </ul>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <!-- 显示表格数据 -->
+                    <!--<div class="row">-->
+                    <!--<div class="col-md-12">-->
+                    <!--<table class="table table-hover" id="emps_table">-->
+
+                    <!--
+
+                        name                 varchar(50)   not null comment '产品名称',
+                        type                 varchar(30)   null comment '产品型号',
+                        sellingPrice         int default 0 not null comment '产品售价（价格除1000为实际值）',
+                        purchasingPrice      int default 0 not null comment '产品进价（价格除1000为实际值）',
+                        sales                int default 0 not null comment '销量',
+                        grossProfit          int           null comment '商品总利润',
+                        IndividualProfit     int           null comment '商品单件利润',
+                        firstClassification  int           null comment '一级分类',
+                        secondClassification int           null comment '二级分类',
+                        thirdClassification  int           null comment '三级分类'
+
+
+                    -->
+                    <!--</table>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-hover" id="emps_table">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: center">id</th>
+                                    <th style="text-align: center">商品名称</th>
+                                    <th style="text-align: center">商品型号</th>
+                                    <th style="text-align: center">进价</th>
+                                    <th style="text-align: center">售价</th>
+                                    <th style="text-align: center">商品单件利润</th>
+                                    <th style="text-align: center">销量</th>
+                                    <th style="text-align: center">商品总利润</th>
+                                    <th style="text-align: center">一级分类</th>
+                                    <th style="text-align: center">二级分类</th>
+                                    <th style="text-align: center">三级分类</th>
+                                    <th style="text-align: center">操作</th>
+
+
+                                    <!--                                        grossProfit          int           null comment '商品总利润',-->
+                                    <!--                                        IndividualProfit     int           null comment '商品单件利润',-->
+                                    <!--                                        firstClassification  int           null comment '一级分类',-->
+                                    <!--                                        secondClassification int           null comment '二级分类',-->
+                                    <!--                                        thirdClassification  int           null comment '三级分类'-->
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+
+                            </table>
+                            <!--分页文字信息  -->
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6" id="page_info_area" style="    margin-top: 15px;"></div>
+                        <!-- 分页条信息 -->
+                        <div class="col-md-6" id="page_nav_area"></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="lib/jquery.ui.touch-punch.min.js"></script>
+<script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
+<script src="lib/jquery.scrollTo.min.js"></script>
+<script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+<!--common script for all pages-->
+<script src="lib/common-scripts.js"></script>
+<!--script for this page-->
+
+<script type="text/javascript">
+    var totalRecord, currentPage, pageNow;
+    $(function () {
+        //去首页
+        to_page(1, 8);
+    });
+
+    //选择每页显示多少条数据
+    $("#action li a").click(function () {
+        var singlePageDisplay = $(this).html();
+        $(" #singlePageDisplay").text(singlePageDisplay);
+        to_page(pageNow, singlePageDisplay);
+    });
+
+    function to_page(pn, singlePageDisplay) {
+        $.ajax({
+            // url: "/Commodity/getAllCommodity",
+            url: "/Commodity/getCommodityByPage",
+            data: "pn=" + pn + "&singlePageDisplay=" + singlePageDisplay,
+            type: "GET",
+            success: function (result) {
+                console.log(result);
+                //1、解析并显示商品数量数据
+                build_emps_table(result);
+                //2、解析并显示分页信息
+                build_page_info(result);
+                //3、解析显示分页条数据s
+                build_page_nav(result);
+            }
+        });
+    }
+
+    //1、解析并显示商品数量数据
+    function build_emps_table(result) {
+        //清空table表格 emps
+        $("#emps_table tbody").empty();
+        var com = result.data.pageInfo.list;
+        $.each(com, function (index, item) {
+            var idTd = $("<td></td>").append(item.id).attr("style", "text-align: center");
+            var nameTd = $("<td></td>").append(item.name).attr("style", "text-align: center");
+            var typeTd = $("<td></td>").append(item.type).attr("style", "text-align: center");
+            var sellingPriceTd = $("<td></td>").append(item.sellingPrice / 1000 + "￥").attr("style", "text-align: center");
+            var purchasingPriceTd = $("<td></td>").append(item.purchasingPrice / 1000 + "￥").attr("style", "text-align: center");
+            var IndividualProfit = $("<td></td>").append(item.individualProfit).attr("style", "text-align: center");
+            var salesTd = $("<td></td>").append(item.sales).attr("style", "text-align: center");
+            var grossProfit = $("<td></td>").append(item.grossProfit).attr("style", "text-align: center");
+            var firstClassification = "";
+            var secondClassification = "";
+            var thirdClassification = "";
+            if (item.firstClassification == null) {
+                firstClassification = $("<td></td>").append("无").attr("style", "text-align: center");
+            } else {
+                firstClassification = $("<td></td>").append(item.firstClassification).attr("style", "text-align: center");
+            }
+            if (item.secondClassification == null) {
+                secondClassification = $("<td></td>").append("无").attr("style", "text-align: center");
+            } else {
+                secondClassification = $("<td></td>").append(item.secondClassification).attr("style", "text-align: center");
+            }
+            if (item.thirdClassification == null) {
+                thirdClassification = $("<td></td>").append("无").attr("style", "text-align: center");
+            } else {
+                thirdClassification = $("<td></td>").append(item.thirdClassification).attr("style", "text-align: center");
+            }
+
+
+            /**
+             <button class="">
+             <span class="" aria-hidden="true"></span>
+             编辑
+             </button>
+             */
+            var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm edit_btn")
+                .append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append("编辑");
+            //为编辑按钮添加一个自定义的属性，来表示当前员工id
+            editBtn.attr("edit-id", item.id);
+            var delBtn = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
+                .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
+            //为删除按钮添加一个自定义的属性来表示当前删除的员工id
+            delBtn.attr("del-id", item.id);
+            var btnTd = $("<td></td>").append(editBtn).append(" ").append(delBtn).attr("style", "text-align: center");
+            //var delBtn =
+            //append方法执行完成以后还是返回原来的元素
+            $("<tr></tr>")
+                .append(idTd)
+                .append(nameTd)
+                .append(typeTd)
+                .append(sellingPriceTd)
+                .append(purchasingPriceTd)
+                .append(IndividualProfit)
+                .append(salesTd)
+                .append(grossProfit)
+                .append(firstClassification)
+                .append(secondClassification)
+                .append(thirdClassification)
+                .append(btnTd)
+                .appendTo("#emps_table tbody");
+        });
+
+    }
+
+
+    //解析显示分页信息
+    function build_page_info(result) {
+        $("#page_info_area").empty();
+        $("#page_info_area").append("当前" + result.data.pageInfo.pageNum + "页,总" +
+            result.data.pageInfo.pages + "页,总" +
+            result.data.pageInfo.total + "条记录");
+        totalRecord = result.data.pageInfo.total;
+        currentPage = result.data.pageInfo.pages;
+        pageNow = result.data.pageInfo.pageNum;
+    }
+
+
+    //解析显示分页条，点击分页要能去下一页....
+    function build_page_nav(result) {
+        var singlePageDisplay = $(" #singlePageDisplay").html();
+        //page_nav_area
+        $("#page_nav_area").empty();
+        var ul = $("<ul></ul>");
+//.addClass("pagination")
+        //构建元素
+        var firstPageLi = $("<a></a>").append("首页");
+        var prePageLi = $("<a></a>").append("&laquo;");
+        if (result.data.pageInfo.hasPreviousPage == false) {
+            firstPageLi.addClass("forbidden");
+            prePageLi.addClass("forbidden");
+        } else {
+            //为元素添加点击翻页的事件
+            firstPageLi.attr("href", "#").addClass("limit").click(function () {
+                to_page(1, singlePageDisplay);
+            });
+            prePageLi.addClass("limit").click(function () {
+                to_page(result.data.pageInfo.pageNum - 1, singlePageDisplay);
+            });
+        }
+
+
+        var nextPageLi = $("<a></a>").append("&raquo;");
+        var lastPageLi = $("<a></a>").append("末页");
+        if (result.data.pageInfo.hasNextPage == false) {
+            nextPageLi.addClass("forbidden");
+            lastPageLi.addClass("forbidden");
+        } else {
+            nextPageLi.addClass("limit").click(function () {
+                to_page(result.data.pageInfo.pageNum + 1, singlePageDisplay);
+            });
+            lastPageLi.attr("href", "#").addClass("limit").click(function () {
+                to_page(result.data.pageInfo.pages, singlePageDisplay);
+            });
+        }
+
+
+        //添加首页和前一页 的提示
+        ul.append(firstPageLi).append(prePageLi);
+        //1,2，3遍历给ul中添加页码提示
+        $.each(result.data.pageInfo.navigatepageNums, function (index, item) {
+
+            var numLi = $("<a></a>").append(item);
+            if (result.data.pageInfo.pageNum == item) {
+                numLi.addClass("forbiddenPage").attr("style", "color: white");
+            } else {
+                numLi.addClass("limit");
+            }
+            numLi.click(function () {
+                to_page(item, singlePageDisplay);
+            });
+            ul.append(numLi);
+        });
+        //添加下一页和末页 的提示
+        ul.append(nextPageLi).append(lastPageLi);
+
+        //把ul加入到nav
+        var navEle = $("<div></div>").append(ul);
+        navEle.appendTo("#page_nav_area");
+    }
+
+
+    //点击新增按钮弹出模态框。
+    $("#emp_add_modal_btn").click(function () {
+        //清除表单数据（表单完整重置（表单的数据，表单的样式））
+        reset_form("#empAddModal form");
+        //s$("")[0].reset();
+        //发送ajax请求，查出部门信息，显示在下拉列表中
+        // getDepts("#empAddModal select");
+        //弹出模态框
+        $("#empAddModal").modal({
+            backdrop: "static"
+        });
+    });
+
+    //清空表单样式及内容
+    function reset_form(ele) {
+        $(ele)[0].reset();
+        //清空表单样式
+        $(ele).find("*").removeClass("has-error has-success");
+        $(ele).find(".help-block").text("");
+    }
+
+
+    //点击保存，保存商品。
+    $("#emp_save_btn").click(function () {
+        //1、模态框中填写的表单数据提交给服务器进行保存
+        //1、先对要提交给服务器的数据进行校验
+
+        //1、判断之前的ajax用户名校验是否成功。如果成功。
+        if ($(this).attr("ajax-va") == "error") {
+            return false;
+        }
+
+        //2、发送ajax请求保存商品信息
+
+        $.ajax({
+            url: "/Commodity/addEmpmerchandiseMessage",
+            type: "POST",
+            data: $("#empAddModal form").serialize(),
+            success: function (result) {
+
+                console.log(result);
+                //1、关闭模态框
+                $("#empAddModal").modal('hide');
+                //alert(result.msg);
+                if (result.code == 200) {
+                    //信息保存成功；
+                    //2、来到最后一页，显示刚才保存的数据
+                    //发送ajax请求显示最后一页数据即可
+                    if (totalRecord % 8 == 0) {
+                        currentPage = currentPage + 1
+                        to_page(currentPage);
+                    }
+                    to_page(currentPage);
+                } else {
+                    //显示失败信息
+                    //console.log(result);
+                    //有哪个字段的错误信息就显示哪个字段的；
+                    // if (undefined != result.data.errorFields.email) {
+                    //     //显示邮箱错误信息
+                    //     show_validate_msg("#email_add_input", "error", result.data.errorFields.email);
+                    // }
+                    // if (undefined != result.data.errorFields.empName) {
+                    //     //显示员工名字的错误信息
+                    //     show_validate_msg("#empName_add_input", "error", result.extend.errorFields.empName);
+                    // }
+                }
+            }
+        });
+    });
+
+
+    $(document).on("click", ".edit_btn", function () {
+
+
+        //2、查出员工信息，显示员工信息
+        getEmp($(this).attr("edit-id"));
+
+        //3、把员工的id传递给模态框的更新按钮
+        $("#emp_update_btn").attr("edit-id", $(this).attr("edit-id"));
+        $("#empUpdateModal").modal({
+            backdrop: "static"
+        });
+    });
+
+    function getEmp(id) {
+        $.ajax({
+            url: "Commodity/getMessageById/" + id,
+            type: "GET",
+            success: function (result) {
+                console.log(result);
+                console.log(id);
+                //,,,，
+                var data = result.data;
+                $("#cmdName_update_input").val(data.name);
+                $("#cmdNum_update_input").val(data.type);
+                $("#cmdPurchasingPrice_update_input").val(data.purchasingPrice);
+                $("#cmdSellingPrice_update_input").val(data.sellingPrice);
+                $("#cmdSales_update_input").val(data.sales);
+            }
+        });
+    }
+
+    //点击更新，更新员工信息
+    $("#emp_update_btn").click(function () {
+        var singlePageDisplay = $(" #singlePageDisplay").val();
+
+        $.ajax({
+            url: "Commodity/updateCommodity/" + $(this).attr("edit-id"),
+            type: "PUT",
+            data: $("#empUpdateModal form").serialize(),
+            success: function (result) {
+                if (result.data != 0) {
+                    alert("修改成功,影响行数为:" + result.data + "行");
+                }
+
+                //1、关闭对话框
+                $("#empUpdateModal").modal("hide");
+
+                //2、回到本页面
+                to_page(pageNow, singlePageDisplay);
+            }
+        });
+    });
+
+    //单个删除
+    $(document).on("click", ".delete_btn", function () {
+        var singlePageDisplay = $(" #singlePageDisplay").val();
+
+        //1、弹出是否确认删除对话框
+        var empName = $(this).parents("tr").find("td:eq(2)").text();
+        var id = $(this).attr("del-id");
+        //alert($(this).parents("tr").find("td:eq(1)").text());
+        if (confirm("确认删除【" + empName + "】吗？")) {
+            //确认，发送ajax请求删除即可
+            $.ajax({
+                url: "Commodity/deleteCommodity/" + id,
+                type: "DELETE",
+                success: function (result) {
+                    if (result.data != 0) {
+                        alert("删除成功,影响行数为:" + result.data + "行");
+                    }
+                    //回到本页
+                    to_page(pageNow, singlePageDisplay);
+                }
+            });
+        }
+    });
+
+
+</script>
+</html>
