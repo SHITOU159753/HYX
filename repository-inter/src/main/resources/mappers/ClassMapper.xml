@@ -1,44 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.chen.dao.CommodityDao">
+<mapper namespace="com.chen.dao.ClassDao">
 
-
-
-    <sql id="commodity">
-         id, name, type, sellingPrice, purchasingPrice, sales,grossProfit,IndividualProfit,firstClassification,secondClassification,thirdClassification
-    </sql>
-
-    <select id="getLimitCommodity" resultType="com.chen.pojo.Commodity">
-        select
-        <include refid="commodity"/>
-        from commodity  limit #{start},#{size};
-    </select>
-<!--,jdbcType=INTEGER-->
-    <select id="getAllCommoditySize" resultType="java.lang.Integer">
-      select count(*) from commodity;
+    <select id="getFirstClass" resultType="java.util.Map">
+        select id,name from firstClassification
     </select>
 
-    <insert id="addEmpmerchandiseMessage">
-        insert  into commodity (name, type, sellingPrice, purchasingPrice,sales) values (#{name},#{type},#{sellingPrice},#{purchasingPrice},#{sales});
-    </insert>
 
-    <select id="getMessageBuId" resultType="com.chen.pojo.Commodity">
-        select <include refid="commodity"/>
-        from commodity where id = #{id}
+    <select id="getSecondClass" resultType="java.util.Map">
+        select id,name from secondClassification where firstClassifcationID=#{firstClassID};
     </select>
 
-    <update id="updateCommodity">
-        update commodity
-        set name = #{name}
-        , type = #{type}
-        , sellingPrice = #{sellingPrice}
-        , purchasingPrice = #{purchasingPrice}
-        , sales = #{sales}
-        where id = #{id}
+
+    <select id="getThirdClass" resultType="java.util.Map">
+        select id,name from thirdClassification where secondClassificationID=#{secondClassID};
+    </select>
+    
+
+    <update id="updateClass">
+        update ${table} set name=#{name} where id=#{id};
     </update>
 
-    <delete id="deleteCommodity">
-        delete from commodity where id=#{id}
+
+    <insert id="addFirstClass">
+        INSERT INTO firstClassification (name) VALUES (#{name})
+    </insert>
+
+
+    <insert id="addClass">
+        INSERT INTO ${table} (${superiorName},name) VALUES (#{superiorId},#{name})
+    </insert>
+
+    <delete id="removeClass">
+        DELETE FROM ${table} WHERE id = #{id}
     </delete>
 
 </mapper>

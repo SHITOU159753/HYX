@@ -3,27 +3,102 @@
 <mapper namespace="com.chen.dao.CommodityDao">
 
 
-
     <sql id="commodity">
-         id, name, type, sellingPrice, purchasingPrice, sales,grossProfit,IndividualProfit,firstClassification,secondClassification,thirdClassification
+        <trim suffixOverrides=",">
+            <if test="id !=null and id != ''">
+                id,
+            </if>
+            <if test="name !=null and name != ''">
+                name,
+            </if>
+            <if test="type !=null and type != ''">
+                type,
+            </if>
+            <if test="sellingPrice !=null and sellingPrice != ''">
+                sellingPrice,
+            </if>
+            <if test="purchasingPrice !=null and purchasingPrice != ''">
+                purchasingPrice,
+            </if>
+            <if test="sales !=null and sales != ''">
+                sales,
+            </if>
+            <if test="grossProfit !=null and grossProfit != ''">
+                grossProfit,
+            </if>
+            <if test="IndividualProfit !=null and IndividualProfit != ''">
+                IndividualProfit,
+            </if>
+            <if test="firstClassification !=null and firstClassification != ''">
+                firstClassification,
+            </if>
+            <if test="secondClassification !=null and secondClassification != ''">
+                secondClassification,
+            </if>
+            <if test="thirdClassification !=null and thirdClassification != ''">
+                thirdClassification,
+            </if>
+        </trim>
     </sql>
+
+
+    <sql id="commodityContent">
+        <trim suffixOverrides=",">
+            <if test="id !=null and id != ''">
+                #{id},
+            </if>
+            <if test="name !=null and name != ''">
+                #{name},
+            </if>
+            <if test="type !=null and type != ''">
+                #{type},
+            </if>
+            <if test="sellingPrice !=null and sellingPrice != ''">
+                #{sellingPrice},
+            </if>
+            <if test="purchasingPrice !=null and purchasingPrice != ''">
+                #{purchasingPrice},
+            </if>
+            <if test="sales !=null and sales != ''">
+                #{sales},
+            </if>
+            <if test="grossProfit !=null and grossProfit != ''">
+                #{grossProfit},
+            </if>
+            <if test="IndividualProfit !=null and IndividualProfit != ''">
+                #{IndividualProfit},
+            </if>
+            <if test="firstClassification !=null and firstClassification != ''">
+                #{firstClassification},
+            </if>
+            <if test="secondClassification !=null and secondClassification != ''">
+                #{secondClassification},
+            </if>
+            <if test="thirdClassification !=null and thirdClassification != ''">
+                #{thirdClassification},
+            </if>
+        </trim>
+    </sql>
+
+
 
     <select id="getLimitCommodity" resultType="com.chen.pojo.Commodity">
         select
         <include refid="commodity"/>
-        from commodity  limit #{start},#{size};
+        from commodity limit #{start},#{size};
     </select>
-<!--,jdbcType=INTEGER-->
+    <!--,jdbcType=INTEGER-->
     <select id="getAllCommoditySize" resultType="java.lang.Integer">
       select count(*) from commodity;
     </select>
 
     <insert id="addEmpmerchandiseMessage">
-        insert  into commodity (name, type, sellingPrice, purchasingPrice,sales) values (#{name},#{type},#{sellingPrice},#{purchasingPrice},#{sales});
+        insert into commodity (<include refid="commodity"/>) values (<include refid="commodityContent"/>)
     </insert>
 
     <select id="getMessageBuId" resultType="com.chen.pojo.Commodity">
-        select <include refid="commodity"/>
+        select
+        <include refid="commodity"/>
         from commodity where id = #{id}
     </select>
 

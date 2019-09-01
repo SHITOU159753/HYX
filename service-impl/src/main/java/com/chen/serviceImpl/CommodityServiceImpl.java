@@ -1,4 +1,4 @@
-package com.chen.service.impl;
+package com.chen.serviceImpl;
 
 import com.chen.dao.CommodityDao;
 import com.chen.pojo.Commodity;
@@ -52,7 +52,7 @@ public class CommodityServiceImpl implements CommodityService {
      */
     @Override
     public Integer addEmpmerchandiseMessage(Commodity commodity) {
-        return commodityDao.addEmpmerchandiseMessage(commodity.getName(),commodity.getType(),commodity.getSellingPrice(),commodity.getPurchasingPrice(),commodity.getSales());
+        return commodityDao.addEmpmerchandiseMessage(commodity);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class AppServletConfig extends WebMvcConfigurationSupport {
     public void configureViewResolvers(
             ViewResolverRegistry registry) {
         registry.jsp(
-                "/WEB-INF/pages/",
+                "/static/",
                 ".html");
     }
 }

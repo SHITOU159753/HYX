@@ -18,66 +18,70 @@ public class CommodityController {
     @Autowired
     CommodityService commodityService;
 
-
     /**
      * 分页查找商品信息
+     *
      * @param pn
      * @return
      */
     @GetMapping("/getCommodityByPage")
     @ResponseBody
-    public MSG getAllCommodity(@RequestParam(value = "pn", defaultValue = "1")Integer pn,@RequestParam Integer singlePageDisplay){
-        Map<String, PageInfo> page  = commodityService.getAllCommodityByPage(pn,singlePageDisplay);
+    public MSG getAllCommodity(@RequestParam(value = "pn", defaultValue = "1") Integer pn, @RequestParam Integer singlePageDisplay) {
+        Map<String, PageInfo> page = commodityService.getAllCommodityByPage(pn, singlePageDisplay);
         return MSG.success(page);
     }
 
     /**
      * 通过id获取商品信息
+     *
      * @param id
      * @return
      */
     @GetMapping("/getMessageById/{id}")
     @ResponseBody
-    public MSG getMessageById(@PathVariable("id")  String id){
+    public MSG getMessageById(@PathVariable("id") String id) {
         Commodity commodity = commodityService.getMessageBuId(id);
-        return  MSG.success(commodity);
+        return MSG.success(commodity);
     }
 
     /**
      * 修改商品信息
+     *
      * @param id
      * @param commodity
      * @return
      */
     @PutMapping("/updateCommodity/{id}")
     @ResponseBody
-    public MSG updateCommodity(@PathVariable("id")  String id,Commodity commodity){
+    public MSG updateCommodity(@PathVariable("id") String id, Commodity commodity) {
         Integer affectNumber = commodityService.updateCommodity(commodity);
-        return  MSG.success(affectNumber);
+        return MSG.success(affectNumber);
     }
 
     /**
      * 删除商品信息
+     *
      * @param id
      * @return
      */
     @DeleteMapping("/deleteCommodity/{id}")
     @ResponseBody
-    public MSG deleteCommodity(@PathVariable("id")  String id){
+    public MSG deleteCommodity(@PathVariable("id") String id) {
         Integer affectNumber = commodityService.deleteCommodity(id);
-        return  MSG.success(affectNumber);
+        return MSG.success(affectNumber);
     }
 
     /**
      * 添加商品信息
+     *
      * @param commodity
      * @return
      */
     @PostMapping("/addEmpmerchandiseMessage")
     @ResponseBody
-    public MSG addEmpmerchandiseMessage(Commodity commodity){
+    public MSG addEmpmerchandiseMessage(Commodity commodity) {
         System.out.println(commodity);
         Integer i = commodityService.addEmpmerchandiseMessage(commodity);
-        return MSG.success("影响行数为："+ i);
+        return MSG.success("影响行数为：" + i);
     }
 }

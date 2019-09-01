@@ -23,33 +23,24 @@ public class LogController {
      * post提交错误问题解决，使用form表单ajax提交时提交按钮应使用button，不应使用subbmit
      *
      * @param user
-     * @return ,method = {RequestMethod.POST}
+     * @return , method = {RequestMethod.POST}
      */
-    @RequestMapping(value ="/log")
+    @RequestMapping(value = "/log")
     @ResponseBody
-    public MSG log(User user){
-        try {
-            MSG msg = logService.examineLogService(user);
-            if(StringUtils.isEmpty(msg)){
-                throw new RuntimeException();
-            }
-            return msg;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return MSG.fail( "用户登陆失败");
+    public MSG log(User user) {
+        MSG msg = logService.examineLogService(user);
+        return msg;
     }
 
     @RequestMapping("/checkuser")
     @ResponseBody
-    public MSG checkuser(String userName){
+    public MSG checkuser(String userName) {
         Integer a = logService.examineUsername(userName);
-        if(a != 0){
+        if (a != 0) {
             return MSG.fail("姓名已存在！");
         }
         return MSG.success();
     }
-
 
 
 }

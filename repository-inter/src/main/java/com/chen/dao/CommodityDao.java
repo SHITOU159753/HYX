@@ -15,11 +15,7 @@ public interface CommodityDao {
 
     Integer getAllCommoditySize();
 
-    Integer addEmpmerchandiseMessage(@Param("name")String name,
-                                     @Param("type")String type,
-                                     @Param("sellingPrice") Integer sellingPrice,
-                                     @Param("purchasingPrice") Integer purchasingPrice,
-                                     @Param("sales") Integer sales);
+    Integer addEmpmerchandiseMessage(Commodity commodity);
 
     Commodity getMessageBuId(@Param("id") String id);
 
