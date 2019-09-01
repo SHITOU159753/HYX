@@ -1,5 +1,7 @@
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>商品详情展示</title>
 </head>
 
 <link href="img/favicon.png" rel="icon">
@@ -58,124 +60,136 @@
         /*cursor:not-allowed;*/
         border: 1px solid #337ab7;
     }
+
+    #pageWapper {
+        background: white;
+        padding: 0.5%;
+        width: 98%;
+        margin: 0 auto;
+    }
 </style>
 <body>
 
-<div class="page-wrapper" style="background: white;padding-bottom: 0px;">
-
-    <div class="container-fluid">
-        <div class="row" style="margin: 0; padding: 0;">
-            <div class="col-12">
-
-                <div class="card-body">
-                    <h1>商品详情展示</h1>
-
-                    <div class="row">
-                        <div class="col-md-1 ">
-                            <button class="btn btn-primary" id="emp_add_modal_btn">新增</button>
-                            <button class="btn btn-danger" id="emp_delete_all_btn">删除</button>
+<div class="row mt">
+    <div class="col-lg-12">
+        <h3 class="titleh3"> 商品详情展示</h3>
 
 
-                        </div>
-                        <div>
-                            <ul class="nav navbar-nav" style="display: inline">
-                                <li>
-                                    <h4>页面显示</h4>
-                                </li>
-                                <li class="dropdown" style="margin-left: 10px">
-                                    <div class="dropdown-toggle btn btn-default" data-toggle="dropdown">
-                                        <text id="singlePageDisplay">8</text>
-                                        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                                    </div>
-                                    <ul class="dropdown-menu" id="action">
-                                        <li><a href="#">8</a></li>
-                                        <li><a href="#">12</a></li>
-                                        <li><a href="#">16</a></li>
-                                        <li><a href="#">20</a></li>
-                                        <li><a href="#">24</a></li>
+        <div class="page-wrapper" id="pageWapper">
+
+            <div class="container-fluid">
+                <div class="row" style="margin: 0; padding: 0;">
+                    <div class="col-12">
+
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-md-1 ">
+                                    <button class="btn btn-primary" id="emp_add_modal_btn">新增</button>
+                                    <button class="btn btn-danger" id="emp_delete_all_btn">删除</button>
+
+
+                                </div>
+                                <div>
+                                    <ul class="nav navbar-nav" style="display: inline">
+                                        <li>
+                                            <h4>页面显示</h4>
+                                        </li>
+                                        <li class="dropdown" style="margin-left: 10px">
+                                            <div class="dropdown-toggle btn btn-default" data-toggle="dropdown">
+                                                <text id="singlePageDisplay">8</text>
+                                                <i class="fa fa-unsorted"></i>
+                                            </div>
+                                            <ul class="dropdown-menu" id="action">
+                                                <li><a href="#">8</a></li>
+                                                <li><a href="#">12</a></li>
+                                                <li><a href="#">16</a></li>
+                                                <li><a href="#">20</a></li>
+                                                <li><a href="#">24</a></li>
+                                            </ul>
+
+                                        </li>
                                     </ul>
+                                </div>
+                            </div>
 
-                                </li>
-                            </ul>
+
+                            <!-- 显示表格数据 -->
+                            <!--<div class="row">-->
+                            <!--<div class="col-md-12">-->
+                            <!--<table class="table table-hover" id="emps_table">-->
+
+                            <!--
+
+                                name                 varchar(50)   not null comment '产品名称',
+                                type                 varchar(30)   null comment '产品型号',
+                                sellingPrice         int default 0 not null comment '产品售价（价格除1000为实际值）',
+                                purchasingPrice      int default 0 not null comment '产品进价（价格除1000为实际值）',
+                                sales                int default 0 not null comment '销量',
+                                grossProfit          int           null comment '商品总利润',
+                                IndividualProfit     int           null comment '商品单件利润',
+                                firstClassification  int           null comment '一级分类',
+                                secondClassification int           null comment '二级分类',
+                                thirdClassification  int           null comment '三级分类'
+
+
+                            -->
+                            <!--</table>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-hover" id="emps_table">
+                                        <thead>
+                                        <tr>
+                                            <th style="text-align: center">id</th>
+                                            <th style="text-align: center">商品名称</th>
+                                            <th style="text-align: center">商品型号</th>
+                                            <th style="text-align: center">进价</th>
+                                            <th style="text-align: center">售价</th>
+                                            <th style="text-align: center">商品单件利润</th>
+                                            <th style="text-align: center">销量</th>
+                                            <th style="text-align: center">商品总利润</th>
+                                            <th style="text-align: center">一级分类</th>
+                                            <th style="text-align: center">二级分类</th>
+                                            <th style="text-align: center">三级分类</th>
+                                            <th style="text-align: center">操作</th>
+
+
+                                            <!--                                        grossProfit          int           null comment '商品总利润',-->
+                                            <!--                                        IndividualProfit     int           null comment '商品单件利润',-->
+                                            <!--                                        firstClassification  int           null comment '一级分类',-->
+                                            <!--                                        secondClassification int           null comment '二级分类',-->
+                                            <!--                                        thirdClassification  int           null comment '三级分类'-->
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+
+                                    </table>
+                                    <!--分页文字信息  -->
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6" id="page_info_area" style="    margin-top: 15px;"></div>
+                                <!-- 分页条信息 -->
+                                <div class="col-md-6" id="page_nav_area"></div>
+                            </div>
                         </div>
-                    </div>
 
 
-                    <!-- 显示表格数据 -->
-                    <!--<div class="row">-->
-                    <!--<div class="col-md-12">-->
-                    <!--<table class="table table-hover" id="emps_table">-->
-
-                    <!--
-
-                        name                 varchar(50)   not null comment '产品名称',
-                        type                 varchar(30)   null comment '产品型号',
-                        sellingPrice         int default 0 not null comment '产品售价（价格除1000为实际值）',
-                        purchasingPrice      int default 0 not null comment '产品进价（价格除1000为实际值）',
-                        sales                int default 0 not null comment '销量',
-                        grossProfit          int           null comment '商品总利润',
-                        IndividualProfit     int           null comment '商品单件利润',
-                        firstClassification  int           null comment '一级分类',
-                        secondClassification int           null comment '二级分类',
-                        thirdClassification  int           null comment '三级分类'
-
-
-                    -->
-                    <!--</table>-->
-                    <!--</div>-->
-                    <!--</div>-->
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table table-hover" id="emps_table">
-                                <thead>
-                                <tr>
-                                    <th style="text-align: center">id</th>
-                                    <th style="text-align: center">商品名称</th>
-                                    <th style="text-align: center">商品型号</th>
-                                    <th style="text-align: center">进价</th>
-                                    <th style="text-align: center">售价</th>
-                                    <th style="text-align: center">商品单件利润</th>
-                                    <th style="text-align: center">销量</th>
-                                    <th style="text-align: center">商品总利润</th>
-                                    <th style="text-align: center">一级分类</th>
-                                    <th style="text-align: center">二级分类</th>
-                                    <th style="text-align: center">三级分类</th>
-                                    <th style="text-align: center">操作</th>
-
-
-                                    <!--                                        grossProfit          int           null comment '商品总利润',-->
-                                    <!--                                        IndividualProfit     int           null comment '商品单件利润',-->
-                                    <!--                                        firstClassification  int           null comment '一级分类',-->
-                                    <!--                                        secondClassification int           null comment '二级分类',-->
-                                    <!--                                        thirdClassification  int           null comment '三级分类'-->
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-
-                            </table>
-                            <!--分页文字信息  -->
-
-
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6" id="page_info_area" style="    margin-top: 15px;"></div>
-                        <!-- 分页条信息 -->
-                        <div class="col-md-6" id="page_nav_area"></div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
 </div>
-
 </body>
 
 

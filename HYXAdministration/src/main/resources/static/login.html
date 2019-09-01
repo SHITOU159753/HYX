@@ -173,6 +173,10 @@ MAIN CONTENT
         speed: 500
     });
 
+        // location.reload([false])
+    // if(top.location != self.location){
+    //     top.location = self.location
+    // }
 
     function log() {
         var a;
@@ -191,6 +195,10 @@ MAIN CONTENT
                 if (result.code == 500) {
                     alert(result.msg)
                 } else {
+                    // $.cookie.raw=true;
+                    // $.cookie.json=true;
+                    $.cookie = "LOGIN="+result.data;
+
                     window.location.href = "host.html";
                 }
             }
