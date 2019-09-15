@@ -15,7 +15,7 @@
     <select id="getThirdClass" resultType="java.util.Map">
         select id,name from thirdClassification where secondClassificationID=#{secondClassID};
     </select>
-    
+
 
     <update id="updateClass">
         update ${table} set name=#{name} where id=#{id};
@@ -23,16 +23,19 @@
 
 
     <insert id="addFirstClass">
-        INSERT INTO firstClassification (name) VALUES (#{name})
+        insert into firstClassification (name) value (#{name})
     </insert>
 
 
     <insert id="addClass">
-        INSERT INTO ${table} (${superiorName},name) VALUES (#{superiorId},#{name})
+        insert into ${table} (${superiorName},name) value (#{superiorId},#{name})
     </insert>
 
     <delete id="removeClass">
-        DELETE FROM ${table} WHERE id = #{id}
+        delete from ${table} where id = #{id}
     </delete>
+
+
+
 
 </mapper>

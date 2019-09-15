@@ -34,4 +34,6 @@ public interface  ClassDao {
     //删除一二三级分类的数据
     Integer removeClass(@Param("id") Integer id,
                         @Param("table") String tableName);
+
+
 }

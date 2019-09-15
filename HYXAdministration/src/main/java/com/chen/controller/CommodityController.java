@@ -27,7 +27,19 @@ public class CommodityController {
     @GetMapping("/getCommodityByPage")
     @ResponseBody
     public MSG getAllCommodity(@RequestParam(value = "pn", defaultValue = "1") Integer pn, @RequestParam Integer singlePageDisplay) {
-        Map<String, PageInfo> page = commodityService.getAllCommodityByPage(pn, singlePageDisplay);
+        Map<String, PageInfo> page = commodityService.getAllCommodityByPage(pn, singlePageDisplay, 0, 0, 0);
+        return MSG.success(page);
+    }
+
+    /**
+     * 通过类别ID查询商品详情
+     *
+     * @return
+     */
+    @GetMapping("/getMessageByClassId")
+    @ResponseBody
+    public MSG getMessageByClassId(@RequestParam Integer singlePageDisplay, @RequestParam Integer firstClassId, @RequestParam Integer secondClassId, @RequestParam Integer thirdClassId) {
+        Map<String, PageInfo> page = commodityService.getAllCommodityByPage(1, singlePageDisplay, firstClassId, secondClassId, thirdClassId);
         return MSG.success(page);
     }
 
@@ -57,6 +69,7 @@ public class CommodityController {
         Integer affectNumber = commodityService.updateCommodity(commodity);
         return MSG.success(affectNumber);
     }
+
 
     /**
      * 删除商品信息

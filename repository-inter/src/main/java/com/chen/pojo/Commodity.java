@@ -33,11 +33,19 @@ public class Commodity {
     private Integer secondClassification;
     //三级分类
     private Integer thirdClassification;
+    //一级分类
+    private String firstClassificationName;
+    //二级分类
+    private String secondClassificationName;
+    //三级分类
+    private String thirdClassificationName;
+
 
     public Commodity() {
     }
 
-    public Commodity(Integer id, String name, String type, Integer sellingPrice, Integer purchasingPrice, Integer sales, Integer grossProfit, Integer individualProfit, Integer firstClassification, Integer secondClassification, Integer thirdClassification) {
+
+    public Commodity(Integer id, String name, String type, Integer sellingPrice, Integer purchasingPrice, Integer sales, Integer grossProfit, Integer individualProfit, Integer firstClassification, Integer secondClassification, Integer thirdClassification, String firstClassificationName, String secondClassificationName, String thirdClassificationName) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -49,5 +57,8 @@ public class Commodity {
         this.firstClassification = firstClassification;
         this.secondClassification = secondClassification;
         this.thirdClassification = thirdClassification;
+        this.firstClassificationName = firstClassificationName;
+        this.secondClassificationName = secondClassificationName;
+        this.thirdClassificationName = thirdClassificationName;
     }
 }

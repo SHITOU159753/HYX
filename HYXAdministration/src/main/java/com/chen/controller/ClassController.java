@@ -82,6 +82,13 @@ public class ClassController {
     }
 
 
+    /**
+     * 删除分类方法
+     *
+     * @param id
+     * @param className
+     * @return
+     */
     @PostMapping("/removeClass")
     @ResponseBody
     public MSG removeClass(@RequestParam("id") Integer id, @RequestParam("className") String className) {

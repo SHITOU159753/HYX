@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chen.dao.CommodityDao">
 
+    <sql id="commodity">id,name,type,sellingPrice,purchasingPrice,sales,grossProfit,IndividualProfit,firstClassification,secondClassification,thirdClassification</sql>
 
-    <sql id="commodity">
+    <sql id="commodityInsert">
         <trim suffixOverrides=",">
             <if test="id !=null and id != ''">
                 id,
@@ -81,19 +82,44 @@
     </sql>
 
 
-
     <select id="getLimitCommodity" resultType="com.chen.pojo.Commodity">
-        select
-        <include refid="commodity"/>
-        from commodity limit #{start},#{size};
+        select  c.id,c.name,type,sellingPrice,purchasingPrice,sales,grossProfit,IndividualProfit,firstClassification,f.name as firstClassificationName,secondClassification,s.name as secondClassificationName,thirdClassification, t.name as thirdClassificationName
+            from commodity as c
+            inner join firstClassification as f
+            inner join secondClassification as s
+            inner join thirdClassification as t
+            on c. firstClassification = f.id and c.secondClassification = s.id and c.thirdClassification = t.id
+             <where>
+                 <if test="firstClassification != 0 ">
+                     firstClassification = #{firstClassification}
+                 </if>
+                 <if test="secondClassification != 0 ">
+                     and secondClassification = #{secondClassification}
+                 </if>
+                 <if test="thirdClassification != 0 ">
+                     and thirdClassification = #{thirdClassification}
+                 </if>
+             </where>
+             limit #{start},#{size};
     </select>
     <!--,jdbcType=INTEGER-->
     <select id="getAllCommoditySize" resultType="java.lang.Integer">
-      select count(*) from commodity;
+      select count(*) from commodity
+        <where>
+            <if test="firstClassification != 0 ">
+                firstClassification = #{firstClassification}
+            </if>
+            <if test="secondClassification != 0 ">
+                and secondClassification = #{secondClassification}
+            </if>
+            <if test="thirdClassification != 0 ">
+                and thirdClassification = #{thirdClassification}
+            </if>
+        </where>;
     </select>
 
     <insert id="addEmpmerchandiseMessage">
-        insert into commodity (<include refid="commodity"/>) values (<include refid="commodityContent"/>)
+        insert into commodity (<include refid="commodityInsert"/>) values (<include refid="commodityContent"/>)
     </insert>
 
     <select id="getMessageBuId" resultType="com.chen.pojo.Commodity">
