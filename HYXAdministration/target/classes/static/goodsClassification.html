@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>商品分类管理</title>
+</head>
+<link href="img/favicon.png" rel="icon">
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+
+<link href="css/style.css" rel="stylesheet">
+<link href="css/style-responsive.css" rel="stylesheet">
+
+<style>
+    .ClassStyle {
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+    }
+
+    #firstClass,#secondClass,#thirdClass{
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+
+
+<div class="row mt">
+    <div class="col-lg-12">
+        <h3 class="titleh3">商品分类管理</h3>
+
+
+        <div class="row mt">
+            <!--  DATE PICKERS -->
+            <div class="col-lg-12">
+                <div class="form-panel">
+                    <form action="#" class="form-horizontal style-form">
+
+
+                        <div class="form-group" id="firstClass">
+                            <label class="control-label col-md-2">一级分类</label>
+                            <div class="col-md-3 col-xs-11" style="padding: 0; ">
+                                <div class="dropdown-toggle btn btn-default" data-toggle="dropdown" style="width: 100%">
+                                    <text style="float: left">--请选择--</text>
+                                    <i class="fa fa-unsorted" style="float: right"></i>
+                                </div>
+
+                                <ul class="dropdown-menu" style="width: 100%">
+                                    <li><a>空，请添加一级分类</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="addOrUpdateFirst" placeholder="一级分类">
+                                <span class="help-block">新增或修改一级分类内容</span>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-success btn-update">
+                                    <i class="fa fa-check"></i>
+                                    修改
+                                </button>
+                                <button type="button" class="btn btn-info btn-add">
+                                    <i class="fa fa-plus"></i>
+                                    添加
+                                </button>
+                                <button type="button" class="btn btn-danger btn-delete">
+                                    <i class="fa fa-trash-o"></i>
+                                    删除
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group " id="secondClass">
+                            <label class="control-label col-md-2">二级分类</label>
+                            <div class="col-md-3 col-xs-11" style="padding: 0; ">
+                                <div class="dropdown-toggle btn btn-default" data-toggle="dropdown" style="width: 100%">
+                                    <text style="float: left">--请选择--</text>
+                                    <i class="fa fa-unsorted" style="float: right"></i>
+                                </div>
+                                <ul class="dropdown-menu" style="width: 100%">
+                                    <li><a>空，请添加二级分类</a></li>
+                                </ul>
+
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="addOrUpdateSecond" placeholder="二级分类">
+                                <span class="help-block">新增或修改二级分类内容</span>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-success btn-update">
+                                    <i class="fa fa-check"></i>
+                                    修改
+                                </button>
+                                <button type="button" class="btn btn-info btn-add">
+                                    <i class="fa fa-plus"></i>
+                                    添加
+                                </button>
+                                <button type="button" class="btn btn-danger btn-delete">
+                                    <i class="fa fa-trash-o"></i>
+                                    删除
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group" id="thirdClass">
+                            <label class="control-label col-md-2">三级分类</label>
+                            <div class="col-md-3 col-xs-11" style="padding: 0; ">
+                                <div class="dropdown-toggle btn btn-default" data-toggle="dropdown" style="width: 100%">
+                                    <text style="float: left">--请选择--</text>
+                                    <i class="fa fa-unsorted" style="float: right"></i>
+                                </div>
+                                <ul class="dropdown-menu" style="width: 100%">
+                                    <li><a href="#">空，请添加三级分类</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="addOrUpdateThird" placeholder="三级分类">
+                                <span class="help-block">新增或修改三级分类内容</span>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-success btn-update">
+                                    <i class="fa fa-check"></i>
+                                    修改
+                                </button>
+                                <button type="button" class="btn btn-info btn-add">
+                                    <i class="fa fa-plus"></i>
+                                    添加
+                                </button>
+                                <button type="button" class="btn btn-danger btn-delete">
+                                    <i class="fa fa-trash-o"></i>
+                                    删除
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /form-panel -->
+            </div>
+            <!-- /col-lg-12 -->
+        </div>
+        <!-- /form-panel -->
+    </div>
+    <!-- /col-lg-12 -->
+</div>
+</body>
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/js/goodsClassjs.js"></script>
+
+
+</html>
