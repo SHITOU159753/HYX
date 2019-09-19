@@ -8,6 +8,7 @@ import com.chen.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +56,9 @@ public class CommodityServiceImpl implements CommodityService {
      */
     @Override
     public Integer addEmpmerchandiseMessage(Commodity commodity) {
+        //预计售价减去进价
+        BigDecimal individualProfit = commodity.getSellingPrice().subtract(commodity.getPurchasingPrice());
+        commodity.setIndividualProfit(individualProfit);
         return commodityDao.addEmpmerchandiseMessage(commodity);
     }
 

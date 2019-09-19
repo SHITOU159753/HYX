@@ -38,11 +38,12 @@ function build_emps_table(result) {
         var idTd = $("<td></td>").append(item.id).attr("style", "text-align: center");
         var nameTd = $("<td></td>").append(item.name).attr("style", "text-align: center");
         var typeTd = $("<td></td>").append(item.type).attr("style", "text-align: center");
-        var sellingPriceTd = $("<td></td>").append(item.sellingPrice / 1000 + "￥").attr("style", "text-align: center");
-        var purchasingPriceTd = $("<td></td>").append(item.purchasingPrice / 1000 + "￥").attr("style", "text-align: center");
+        var sellingPriceTd = $("<td></td>").append(item.sellingPrice + "￥").attr("style", "text-align: center");
+        var purchasingPriceTd = $("<td></td>").append(item.purchasingPrice + "￥").attr("style", "text-align: center");
         var IndividualProfit = $("<td></td>").append(item.individualProfit).attr("style", "text-align: center");
         var salesTd = $("<td></td>").append(item.sales).attr("style", "text-align: center");
         var grossProfit = $("<td></td>").append(item.grossProfit).attr("style", "text-align: center");
+        var realityGrossProfit = $("<td></td>").append(item.realityGrossProfit).attr("style", "text-align: center");
         var firstClassification = "";
         var secondClassification = "";
         var thirdClassification = "";
@@ -89,6 +90,7 @@ function build_emps_table(result) {
             .append(IndividualProfit)
             .append(salesTd)
             .append(grossProfit)
+            .append(realityGrossProfit)
             .append(firstClassification)
             .append(secondClassification)
             .append(thirdClassification)

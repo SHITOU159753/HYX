@@ -18,7 +18,7 @@ Website: http://Alvarez.is/
 /* BASIC THEME CONFIGURATION */
 body {
     color: #797979;
-    background-color: #dadada;
+    background-color: #eaeaea;
     font-family: 'Ruda', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
@@ -27,6 +27,10 @@ body {
 }
 .titleh3{
     margin-left: 1%;
+}
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
 }
 ul li {
     list-style: none;
@@ -411,10 +415,20 @@ ul.sidebar-menu li a.active i {
 
 /* MAIN CONTENT CONFIGURATION */
 #main-content {
-    margin-left: 10%;
+    padding-left: 250px;
     height: 100%;
 }
 
+@media (max-width: 768px) {
+    #main-content {
+        padding: 0px !important;
+        margin-top: 60px;
+        position: none !important;
+    }
+    #objectPage {
+        width: 100% !important;
+    }
+}
 .header, .footer {
     min-height: 60px;
     padding: 0 15px;
@@ -435,10 +449,11 @@ ul.sidebar-menu li a.active i {
 .wrapper {
     display: inline-block;
     margin-top: 60px;
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;*/
+    /*padding-right: 15px;*/
     padding-bottom: 65px;
     padding-top: 0px;
+    /*width: calc(100% - 250px);*/
     width: 100%;
 }
 
@@ -859,8 +874,8 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 .custom-bar-chart .bar {
     height: 100%;
     position: relative;
-    width: 6%;
-    margin: 0px 4%;
+    width: 4%;
+    margin: 0px 2%;
     float: left;
     text-align: center;
     z-index: 10;
