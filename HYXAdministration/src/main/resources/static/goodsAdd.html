@@ -40,7 +40,7 @@
                                    placeholder="商品型号">
                         </div>
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group " id="purchasingPrice">
                         <label for="cmdPurchasingPrice_add_input" class="control-label col-lg-2">进价</label>
                         <div class="col-sm-5">
                             <input type="text" name="purchasingPrice" class="form-control"
@@ -48,14 +48,14 @@
                                    placeholder="进价">
                         </div>
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group " id="sellingPrice" >
                         <label for="cmdSellingPrice_add_input" class="control-label col-lg-2">售价</label>
                         <div class="col-sm-5">
                             <input type="text" name="sellingPrice" class="form-control" id="cmdSellingPrice_add_input"
-                                   placeholder="售价">
+                                   placeholder="预计售价">
                         </div>
-                    </div>
 
+                    </div>
 
 
 
@@ -134,6 +134,12 @@
     })
 
     $("#emp_save_btn").click(function () {
+        if($("#cmdSellingPrice_add_input").attr("type") == "error"){
+            return alert("请输入正确格式预售价");
+    }
+        if($("#cmdPurchasingPrice_add_input").attr("type") == "error"){
+            return alert("请输入正确格式进价");
+        }
         var data
         var firstClassification = $("#firstClass div div text").attr("value");
         var secondClassification = $("#secondClass div div text").attr("value");
@@ -146,48 +152,51 @@
             data = $("#commentForm").serialize()+"&firstClassification="+firstClassification;
         }else{
             alert("请选择分类");
-            return
+            return false;
         }
-
-
         $.ajax({
             url: "/Commodity/addEmpmerchandiseMessage",
             type: "POST",
             data: data,
             success: function (result) {
-
-                console.log(result);
-                //1、关闭模态框
-                $("#empAddModal").modal('hide');
-                //alert(result.msg);
                 if (result.code == 200) {
-                    //信息保存成功；
-                    //2、来到最后一页，显示刚才保存的数据
-                    //发送ajax请求显示最后一页数据即可
-                    if (totalRecord % 8 == 0) {
-                        currentPage = currentPage + 1
-                        to_page(currentPage);
-                    }
-                    // to_page(currentPage);
-                } else {
-                    //显示失败信息
-                    //console.log(result);
-                    //有哪个字段的错误信息就显示哪个字段的；
-                    // if (undefined != result.data.errorFields.email) {
-                    //     //显示邮箱错误信息
-                    //     show_validate_msg("#email_add_input", "error", result.data.errorFields.email);
-                    // }
-                    // if (undefined != result.data.errorFields.empName) {
-                    //     //显示员工名字的错误信息
-                    //     show_validate_msg("#empName_add_input", "error", result.extend.errorFields.empName);
-                    // }
+                    alert("保存成功可前往商品明细最末页进行查看")
+
                 }
             }
         });
     });
+    //判断输入是否正确
 
+    $("#cmdPurchasingPrice_add_input").on("blur",function () {
+        var numTest = /^\d*\.?\d+$/;
+        var cmdPurchasingPrice = $("#cmdPurchasingPrice_add_input").val();
+        if(!numTest.test(cmdPurchasingPrice)){
+            showValidateMsg("#purchasingPrice","error","进价价格格式错误");
+        }else{
+            showValidateMsg("#purchasingPrice","success","✔️");
+        }
+    })
+    $("#cmdSellingPrice_add_input").on("blur",function () {
+        var numTest = /^\d*\.?\d+$/;
+        var cmdSellingPrice = $("#cmdSellingPrice_add_input").val();
+        if(!numTest.test(cmdSellingPrice)){
+            showValidateMsg("#sellingPrice","error","预计售价价格格式错误");
+        }else{
+            showValidateMsg("#sellingPrice","success","✔️");
+        }
+    })
+    function showValidateMsg(id,status,msg){
+        $(id+" span").remove();
+        if ("success" == status){
+            $("<span></span>").append(msg).addClass("control-label col-lg-3").attr("style","color:#468847;").appendTo($(id));
+            $(id+" div input").attr("style","border-color: #468847").attr("type","success");
 
-
+        } else if("error" == status){
+            $("<span></span>").append(msg).addClass("control-label col-lg-3").attr("style","color:#a05454;").appendTo($(id));
+            $(id+" div input").attr("style","border-color: #a05454").attr("type","error");
+        }
+    }
 
 
 

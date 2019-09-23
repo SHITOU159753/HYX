@@ -40,7 +40,7 @@ function build_emps_table(result) {
         var typeTd = $("<td></td>").append(item.type).attr("style", "text-align: center");
         var sellingPriceTd = $("<td></td>").append(item.sellingPrice + "￥").attr("style", "text-align: center");
         var purchasingPriceTd = $("<td></td>").append(item.purchasingPrice + "￥").attr("style", "text-align: center");
-        var IndividualProfit = $("<td></td>").append(item.individualProfit).attr("style", "text-align: center");
+        var IndividualProfit = $("<td></td>").append(item.individualProfit + "￥").attr("style", "text-align: center");
         var salesTd = $("<td></td>").append(item.sales).attr("style", "text-align: center");
         var grossProfit = $("<td></td>").append(item.grossProfit).attr("style", "text-align: center");
         var realityGrossProfit = $("<td></td>").append(item.realityGrossProfit).attr("style", "text-align: center");
