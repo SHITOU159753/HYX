@@ -63,6 +63,7 @@ function build_emps_table(result) {
             thirdClassification = $("<td></td>").append(item.thirdClassificationName).attr("style", "text-align: center").attr("value", item.thirdClassification);
         }
 
+        var createAt = $("<td></td>").append(item.createAt).attr("style", "text-align: center");
 
         /**
          <button class="">
@@ -70,10 +71,12 @@ function build_emps_table(result) {
          编辑
          </button>
          */
-        var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm edit_btn")
+        var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm edit_btn").attr("data-toggle", "modal").attr("data-target", "#updateCommodity")
             .append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append("编辑");
         //为编辑按钮添加一个自定义的属性，来表示当前员工id
         editBtn.attr("edit-id", item.id);
+
+
         var delBtn = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
             .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
         //为删除按钮添加一个自定义的属性来表示当前删除的员工id
@@ -85,8 +88,8 @@ function build_emps_table(result) {
             .append(idTd)
             .append(nameTd)
             .append(typeTd)
-            .append(sellingPriceTd)
             .append(purchasingPriceTd)
+            .append(sellingPriceTd)
             .append(IndividualProfit)
             .append(salesTd)
             .append(grossProfit)
@@ -94,6 +97,7 @@ function build_emps_table(result) {
             .append(firstClassification)
             .append(secondClassification)
             .append(thirdClassification)
+            .append(createAt)
             .append(btnTd)
             .appendTo("#emps_table tbody");
     });
@@ -220,7 +224,7 @@ $(document).on("click", ".delete_btn", function () {
     }
 });
 
-getFirstClass();
+getFirstClass("firstClass");
 
 //一级分类点击事件
 $("#firstClass div ul ").on("click", "li a", function () {
@@ -229,16 +233,35 @@ $("#firstClass div ul ").on("click", "li a", function () {
     $(" #firstClass div div text").text(firstVal).attr("value", value);
     $(" #secondClass div div text").text("--请选择--").removeAttr("value");
     $(" #thirdClass div div text").text("--请选择--").removeAttr("value");
-    getSecondClass(value);
+    getSecondClass(value, "secondClass", "thirdClass");
     getMessageByClassId(value, 0, 0);
 });
+$("#updateFirstClass div ul ").on("click", "li a", function () {
+    var firstVal = $(this).html();
+    var value = $(this).attr("value");
+    $(" #updateFirstClass div div text").text(firstVal).attr("value", value);
+    $(" #updateSecondClass div div text").text("--请选择--").removeAttr("value");
+    $(" #updateThirdClass div div text").text("--请选择--").removeAttr("value");
+    getSecondClass(value, "updateSecondClass", "updateThirdClass");
+    getMessageByClassId(value, 0, 0);
+});
+
+
 //二级分类点击事件
 $("#secondClass div ul ").on("click", "li a", function () {
     var secondVal = $(this).html();
     var value = $(this).attr("value");
     $(" #secondClass div div text").text(secondVal).attr("value", value);
     $(" #thirdClass div div text").text("--请选择--").removeAttr("value");
-    getThirdClass(value);
+    getThirdClass(value, "thirdClass");
+    getMessageByClassId(0, value, 0);
+});
+$("#updateSecondClass div ul ").on("click", "li a", function () {
+    var secondVal = $(this).html();
+    var value = $(this).attr("value");
+    $(" #updateSecondClass div div text").text(secondVal).attr("value", value);
+    $(" #updateThirdClass div div text").text("--请选择--").removeAttr("value");
+    getThirdClass(value, "updateThirdClass");
     getMessageByClassId(0, value, 0);
 });
 //三级分类点击事件
@@ -248,9 +271,15 @@ $("#thirdClass div ul ").on("click", "li a", function () {
     $(" #thirdClass div div text").text(thirdVal).attr("value", value);
     getMessageByClassId(0, 0, value);
 });
+$("#updateThirdClass div ul ").on("click", "li a", function () {
+    var thirdVal = $(this).html();
+    var value = $(this).attr("value");
+    $(" #updateThirdClass div div text").text(thirdVal).attr("value", value);
+    getMessageByClassId(0, 0, value);
+});
 
 //获取一级分类的所有数据
-function getFirstClass() {
+function getFirstClass(firstClass) {
     $.ajax({
         url: "/ClassController/getAllFirstClassification",
         type: "GET",
@@ -258,15 +287,35 @@ function getFirstClass() {
             if (result.code == 200) {
                 var data = result.data;
 
-                $("#firstClass div ul").empty();
-                $("#secondClass div ul").empty();
-                $("#thirdClass div ul").empty();
-                for (var i = 0; i < data.length; i++) {
-                    $("<li></li>").append(
-                        $("<a></a>").append(data[i].name).attr("value", data[i].id).attr("href", "#").attr("num", i)
-                    ).appendTo($("#firstClass div ul"));
+                switch (firstClass) {
+                    case "firstClass":
+                        $("#firstClass div ul").empty();
+                        $("#secondClass div ul").empty();
+                        $("#thirdClass div ul").empty();
+                        $("<li></li>").append($("<a></a>").html("请选择一级分类")).appendTo($("#secondClass div ul"));
+                        $("<li></li>").append($("<a></a>").html("请选择二级分类")).appendTo($("#thirdClass div ul"));
+                        for (var i = 0; i < data.length; i++) {
+                            $("<li></li>").append(
+                                $("<a></a>").append(data[i].name).attr("value", data[i].id).attr("href", "#").attr("num", i)
+                            ).appendTo($("#firstClass div ul"));
+
+                        }
+                        break;
+                    case "updateFirstClass":
+                        $("#updateFirstClass div ul").empty();
+                        $("#updateSecondClass div ul").empty();
+                        $("#updateThirdClass div ul").empty();
+                        $("<li></li>").append($("<a></a>").html("空，请添加二级分类或选择一级分类")).appendTo($("#updateSecondClass div ul"));
+                        $("<li></li>").append($("<a></a>").html("空，请添加三级分类或选择二级分类")).appendTo($("#updateThirdClass div ul"));
+                        for (var i = 0; i < data.length; i++) {
+                            $("<li></li>").append(
+                                $("<a></a>").append(data[i].name).attr("value", data[i].id).attr("href", "#").attr("num", i)
+                            ).appendTo($("#updateFirstClass div ul"));
+
+                        }
+                        break;
                 }
-                ;
+
             } else {
                 alert("获取一级数据失败")
             }
@@ -275,22 +324,42 @@ function getFirstClass() {
 }
 
 //获取对应一级分类的二级分类的所有数据
-function getSecondClass(firstVal) {
+function getSecondClass(firstVal, secondClass) {
     $.ajax({
         url: "/ClassController/getAllSecondClassification/" + firstVal,
         type: "GET",
         success: function (result) {
             if (result.code == 200) {
                 var data = result.data;
-
-                $("#secondClass div ul").empty();
-                $("#thirdClass div ul").empty();
-                for (var i = 0; i < data.length; i++) {
-                    $("<li></li>").append(
-                        $("<a></a>").append(data[i].name).attr("value", data[i].id).attr("href", "#").attr("num", i)
-                    ).appendTo($("#secondClass div ul"));
+                switch (secondClass) {
+                    case"secondClass":
+                        $("#secondClass div ul").empty();
+                        $("#thirdClass div ul").empty();
+                        if (data.length == 0) {
+                            $("<li></li>").append($("<a></a>").html("请选择一级分类")).appendTo($("#thirdClass div ul"));
+                        }
+                        for (var i = 0; i < data.length; i++) {
+                            $("<li></li>").append(
+                                $("<a></a>").append(data[i].name).attr("value", data[i].id).attr("href", "#").attr("num", i)
+                            ).appendTo($("#secondClass div ul"));
+                        }
+                        ;
+                        break;
+                    case "updateSecondClass":
+                        $("#updateSecondClass div ul").empty();
+                        $("#updateThirdClass div ul").empty();
+                        if (data.length == 0) {
+                            $("<li></li>").append($("<a></a>").html("空，请添加三级分类或选择二级分类")).appendTo($("#updateThirdClass div ul"));
+                        }
+                        for (var i = 0; i < data.length; i++) {
+                            $("<li></li>").append(
+                                $("<a></a>").append(data[i].name).attr("value", data[i].id).attr("href", "#").attr("num", i)
+                            ).appendTo($("#updateSecondClass div ul"));
+                        }
+                        ;
+                        break;
                 }
-                ;
+
             } else {
                 alert("二级分类获取数据失败")
             }
@@ -301,20 +370,36 @@ function getSecondClass(firstVal) {
 }
 
 //获取对应二级分类的所有三级分类的数据
-function getThirdClass(secondVal) {
+function getThirdClass(secondVal, thirdClass) {
     $.ajax({
         url: "/ClassController/getAllThirdClassification/" + secondVal,
         type: "GET",
         success: function (result) {
             if (result.code == 200) {
                 var data = result.data;
-                $("#thirdClass div ul").empty();
-                for (var i = 0; i < data.length; i++) {
-                    $("<li></li>").append(
-                        $("<a></a>").append(data[i].name).attr("value", data[i].id).attr("href", "#").attr("num", i)
-                    ).appendTo($("#thirdClass div ul"));
+
+                switch (thirdClass) {
+                    case "thirdClass":
+                        $("#thirdClass div ul").empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $("<li></li>").append(
+                                $("<a></a>").append(data[i].name).attr("value", data[i].id).attr("href", "#").attr("num", i)
+                            ).appendTo($("#thirdClass div ul"));
+                        }
+                        ;
+                        break;
+                    case "updateThirdClass":
+                        $("#updateThirdClass div ul").empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $("<li></li>").append(
+                                $("<a></a>").append(data[i].name).attr("value", data[i].id).attr("href", "#").attr("num", i)
+                            ).appendTo($("#updateThirdClass div ul"));
+                        }
+                        ;
+                        break;
                 }
-                ;
+
+
             } else {
                 alert("三级分类获取数据失败");
             }
@@ -349,3 +434,45 @@ function getMessageByClassId(firstClassId, secondClassId, thirdClassId) {
 
 
 }
+
+
+$("#emps_table ").on('click', ".btn-primary", function () {
+
+    var id = $(this).attr("edit-id");
+    $.ajax({
+        url: "Commodity/getMessageById/" + id,
+        type: "GET",
+        success: function (result) {
+            getFirstClass("updateFirstClass");
+            var data = result.data;
+            $("#cmdName_update_input").empty();
+            $("#cmdName_update_input").val(data.name);
+
+            $("#cmdNum_update_input").empty();
+            $("#cmdNum_update_input").val(data.type);
+
+            $("#cmdPurchasingPrice_update_input").empty();
+            $("#cmdPurchasingPrice_update_input").val(data.purchasingPrice);
+
+            $("#cmdSellingPrice_update_input").empty();
+            $("#cmdSellingPrice_update_input").val(data.sellingPrice);
+
+            $("#updateFirstClass div div text").html("--请选择--");
+            $("#updateFirstClass div div text").html(data.firstClassificationName);
+
+            $("#updateSecondClass div div text").html("--请选择--");
+            $("#updateSecondClass div div text").html(data.secondClassificationName);
+
+            $("#updateThirdClass div div text").html("--请选择--");
+            $("#updateThirdClass div div text").html(data.thirdClassificationName);
+            console.log(result);
+        }
+    })
+
+
+})
+
+
+
+
+

@@ -37,6 +37,8 @@ function getFirstClass() {
                 $("#firstClass div ul").empty();
                 $("#secondClass div ul").empty();
                 $("#thirdClass div ul").empty();
+                $("<li></li>").append($("<a></a>").html("空，请添加二级分类或选择一级分类")).appendTo($("#secondClass div ul"));
+                $("<li></li>").append($("<a></a>").html("空，请添加三级分类或选择二级分类")).appendTo($("#thirdClass div ul"));
                 for (var i = 0; i < data.length; i++) {
                     $("<li></li>").append(
                         $("<a></a>").append(data[i].name).attr("value", data[i].id).attr("href", "#").attr("num",i)
@@ -61,6 +63,9 @@ function getSecondClass(firstVal) {
 
                 $("#secondClass div ul").empty();
                 $("#thirdClass div ul").empty();
+                if(data.length == 0){
+                    $("<li></li>").append($("<a></a>").html("空，请添加二级分类或选择一级分类")).appendTo($("#thirdClass div ul"));
+                }
                 for (var i = 0; i < data.length; i++) {
                     $("<li></li>").append(
                         $("<a></a>").append(data[i].name).attr("value", data[i].id).attr("href", "#").attr("num",i)

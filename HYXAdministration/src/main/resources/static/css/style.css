@@ -428,6 +428,13 @@ ul.sidebar-menu li a.active i {
     #objectPage {
         width: 100% !important;
     }
+    .titleTop{
+        padding-top: 15px;
+    }
+    .titleTop{
+        margin-bottom: 15px;
+        margin-top: 30px;
+    }
 }
 .header, .footer {
     min-height: 60px;
@@ -1757,7 +1764,7 @@ background: #fffbcc !important;
 /* FORMS CONFIGURATION */
 .form-panel {
 	background: #ffffff;
-    width: 98%;
+    width: 99%;
 	margin: 0 auto;
 	padding: 0.5%;
 	box-shadow: 0px 3px 2px #aab2bd;
