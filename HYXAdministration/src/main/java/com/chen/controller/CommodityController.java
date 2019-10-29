@@ -52,7 +52,7 @@ public class CommodityController {
     @GetMapping("/getMessageById/{id}")
     @ResponseBody
     public MSG getMessageById(@PathVariable("id") String id) {
-        Commodity commodity = commodityService.getMessageBuId(id);
+        Commodity commodity = commodityService.getMessageById(id);
         return MSG.success(commodity);
     }
 

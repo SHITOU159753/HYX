@@ -62,16 +62,18 @@
     }
 
     #pageWapper {
-        background: white;
-        padding: 0.5%;
-        width: 98%;
+        background: #ffffff;
+        width: 99%;
         margin: 0 auto;
+        padding: 0.5%;
+        box-shadow: 0px 3px 2px #aab2bd;
+        text-align: left;
     }
 </style>
 <body>
 
 <div class="row mt">
-    <div class="col-lg-12">
+    <div class="col-lg-12 titleTop">
         <h3 class="titleh3"> 商品详情展示</h3>
 
         <div class="row" style="padding-bottom: 20px;">
@@ -102,28 +104,6 @@
 
 
 
-<!--            <div class="col-md-1 ">-->
-<!--                <ul class="nav navbar-nav" style="display: inline">-->
-<!--                    -->
-<!--                    <li>-->
-<!--                        <h4>页面显示</h4>-->
-<!--                    </li>-->
-<!--                    <li class="dropdown" style="margin-left: 10px">-->
-<!--                        <div class="dropdown-toggle btn btn-default" data-toggle="dropdown">-->
-<!--                            <text id="singlePageDisplay">8</text>-->
-<!--                            <i class="fa fa-unsorted"></i>-->
-<!--                        </div>-->
-<!--                        <ul class="dropdown-menu" id="action">-->
-<!--                            <li><a href="#">8</a></li>-->
-<!--                            <li><a href="#">12</a></li>-->
-<!--                            <li><a href="#">16</a></li>-->
-<!--                            <li><a href="#">20</a></li>-->
-<!--                            <li><a href="#">24</a></li>-->
-<!--                        </ul>-->
-
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
 
 
             <div class="col-md-2 " id="firstClass">
@@ -153,6 +133,7 @@
                         <i class="fa fa-unsorted" style="float: right"></i>
                     </div>
                     <ul class="dropdown-menu" style="width: 100%">
+                        空，请添加二级分类
                         <li><a>空，请添加二级分类</a></li>
                     </ul>
 
@@ -205,6 +186,7 @@
                                             <th style="text-align: center">一级分类</th>
                                             <th style="text-align: center">二级分类</th>
                                             <th style="text-align: center">三级分类</th>
+                                            <th style="text-align: center">创建日期</th>
                                             <th style="text-align: center">操作</th>
                                         </tr>
                                         </thead>
@@ -234,6 +216,115 @@
         </div>
     </div>
 </div>
+
+
+
+<!--修改按钮model-->
+
+<div class="modal fade" id="updateCommodity" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">修改</h4>
+            </div>
+            <div class="modal-body">
+                <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
+
+                    <div class="form-group">
+                        <label for="cmdName_update_input" class="control-label col-lg-2">商品名称</label>
+                        <div class="col-lg-8">
+                            <input type="text" name="name" class="form-control" id="cmdName_update_input"
+                                   placeholder="商品名称">
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="cmdNum_update_input" class="control-label col-lg-2">商品型号</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="type" class="form-control" id="cmdNum_update_input"
+                                   placeholder="商品型号">
+                        </div>
+                    </div>
+                    <div class="form-group " id="purchasingPrice">
+                        <label for="cmdPurchasingPrice_update_input" class="control-label col-lg-2">进价</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="purchasingPrice" class="form-control"
+                                   id="cmdPurchasingPrice_update_input"
+                                   placeholder="进价">
+                        </div>
+                    </div>
+                    <div class="form-group " id="sellingPrice">
+                        <label for="cmdSellingPrice_update_input" class="control-label col-lg-2">售价</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="sellingPrice" class="form-control"
+                                   id="cmdSellingPrice_update_input"
+                                   placeholder="预计售价">
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group " id="updateFirstClass">
+                        <label class="control-label col-md-2">一级分类</label>
+                        <div class="col-md-8 col-xs-11">
+                            <div class="dropdown-toggle btn btn-default" data-toggle="dropdown"
+                                 style="width: 100%;">
+                                <text style="float: left">--请选择--</text>
+                                <i class="fa fa-unsorted" style="float: right"></i>
+                            </div>
+
+                            <ul class="dropdown-menu" style="width: 96%;margin-left: 2%;" value="1234123">
+                                <li><a>请添加一级分类</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group " id="updateSecondClass">
+                        <label class="control-label col-md-2">二级分类</label>
+                        <div class="col-md-8 col-xs-11">
+                            <div class="dropdown-toggle btn btn-default" data-toggle="dropdown"
+                                 style="width: 100%">
+                                <text style="float: left">--请选择--</text>
+                                <i class="fa fa-unsorted" style="float: right"></i>
+                            </div>
+                            <ul class="dropdown-menu" style="width: 96%;margin-left: 2%;">
+                                <li><a>请选择一级分类</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group " id="updateThirdClass">
+                        <label class="control-label col-md-2">三级分类</label>
+                        <div class="col-md-8 col-xs-11">
+                            <div class="dropdown-toggle btn btn-default" data-toggle="dropdown"
+                                 style="width: 100%;">
+                                <text style="float: left">--请选择--</text>
+                                <i class="fa fa-unsorted" style="float: right"></i>
+                            </div>
+                            <ul class="dropdown-menu" style="width: 96%;margin-left: 2%;">
+                                <li><a href="#">选择二级分类</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-theme" id="emp_save_btn">Save</button>
+                <button class="btn btn-theme04" id="clearForm" data-dismiss="modal"> Cancel</button>
+<!--                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary">Send message</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 </body>
 
 

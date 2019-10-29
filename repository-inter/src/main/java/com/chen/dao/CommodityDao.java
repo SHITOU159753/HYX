@@ -34,7 +34,7 @@ public interface CommodityDao {
      * @param id
      * @return
      */
-    Commodity getMessageBuId(@Param("id") String id);
+    Commodity getMessageById(@Param("id") String id);
     /**
      * 修改商品信息
      *

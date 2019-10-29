@@ -89,15 +89,16 @@
 
 
     <select id="getLimitCommodity" resultType="com.chen.pojo.Commodity">
-        select  c.id,c.name,type,sellingPrice,purchasingPrice,sales,grossProfit,realityGrossProfit,IndividualProfit,firstClassification,f.name as firstClassificationName,secondClassification,s.name as secondClassificationName,thirdClassification, t.name as thirdClassificationName
+        select  c.id,c.name,c.type,c.sellingPrice,c.purchasingPrice,c.sales,c.grossProfit,c.realityGrossProfit,c.IndividualProfit,c.firstClassification,f.name as firstClassificationName,c.secondClassification,s.name as secondClassificationName,c.thirdClassification, t.name as thirdClassificationName,c.style,c.createAt,c.updateAt,c.deleteAt
             from commodity as c
             inner join firstClassification as f
             inner join secondClassification as s
             inner join thirdClassification as t
             on c. firstClassification = f.id and c.secondClassification = s.id and c.thirdClassification = t.id
              <where>
+                style = 1
                  <if test="firstClassification != 0 ">
-                     firstClassification = #{firstClassification}
+                     and firstClassification = #{firstClassification}
                  </if>
                  <if test="secondClassification != 0 ">
                      and secondClassification = #{secondClassification}
@@ -112,8 +113,9 @@
     <select id="getAllCommoditySize" resultType="java.lang.Integer">
       select count(*) from commodity
         <where>
+            style = 1
             <if test="firstClassification != 0 ">
-                firstClassification = #{firstClassification}
+                and firstClassification = #{firstClassification}
             </if>
             <if test="secondClassification != 0 ">
                 and secondClassification = #{secondClassification}
@@ -128,10 +130,14 @@
         insert into commodity (<include refid="commodityInsert"/>) values (<include refid="commodityContent"/>)
     </insert>
 
-    <select id="getMessageBuId" resultType="com.chen.pojo.Commodity">
-        select
-        <include refid="commodity"/>
-        from commodity where id = #{id}
+    <select id="getMessageById" resultType="com.chen.pojo.Commodity">
+        select  c.id,c.name,c.type,c.sellingPrice,c.purchasingPrice,c.sales,c.grossProfit,c.realityGrossProfit,c.IndividualProfit,c.firstClassification,f.name as firstClassificationName,c.secondClassification,s.name as secondClassificationName,c.thirdClassification, t.name as thirdClassificationName,c.style,c.createAt,c.updateAt,c.deleteAt
+        from commodity as c
+        inner join firstClassification as f
+        inner join secondClassification as s
+        inner join thirdClassification as t
+        on c. firstClassification = f.id and c.secondClassification = s.id and c.thirdClassification = t.id
+         where c.id = #{id}
     </select>
 
     <update id="updateCommodity">

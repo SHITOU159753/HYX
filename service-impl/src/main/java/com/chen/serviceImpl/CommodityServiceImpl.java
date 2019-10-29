@@ -59,12 +59,13 @@ public class CommodityServiceImpl implements CommodityService {
         //预计售价减去进价
         BigDecimal individualProfit = commodity.getSellingPrice().subtract(commodity.getPurchasingPrice());
         commodity.setIndividualProfit(individualProfit);
+
         return commodityDao.addEmpmerchandiseMessage(commodity);
     }
 
     @Override
-    public Commodity getMessageBuId(String id) {
-        return commodityDao.getMessageBuId(id);
+    public Commodity getMessageById(String id) {
+        return commodityDao.getMessageById(id);
     }
 
     @Override

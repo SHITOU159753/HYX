@@ -19,7 +19,7 @@ public interface CommodityService {
      * @param id
      * @return
      */
-    Commodity getMessageBuId(String id);
+    Commodity getMessageById(String id);
 
     /**
      * 修改商品信息
